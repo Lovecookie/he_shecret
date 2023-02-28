@@ -1,6 +1,6 @@
-import 'package:first_app/common/common_enum.dart';
-import 'package:first_app/models/user_model.dart';
-import 'package:first_app/provider/app_state_provider.dart';
+import 'package:he_shecret/common/common_enum.dart';
+import 'package:he_shecret/models/user_model.dart';
+import 'package:he_shecret/provider/app_state_provider.dart';
 import 'package:flutter/material.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';

@@ -1,4 +1,4 @@
-import 'package:first_app/provider/auth_state_provider.dart';
+import 'package:he_shecret/provider/auth_state_provider.dart';
 
 import 'app_state_provider.dart';
 

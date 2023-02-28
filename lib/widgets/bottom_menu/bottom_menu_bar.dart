@@ -1,7 +1,7 @@
-import 'package:first_app/common/common_const.dart';
-import 'package:first_app/common/common_function.dart';
-import 'package:first_app/provider/state_provider.dart';
-import 'package:first_app/theme/app_icon.dart';
+import 'package:he_shecret/common/common_const.dart';
+import 'package:he_shecret/common/common_function.dart';
+import 'package:he_shecret/provider/state_provider.dart';
+import 'package:he_shecret/theme/app_icon.dart';
 
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';

@@ -1,4 +1,4 @@
-import 'package:first_app/provider/state_provider.dart';
+import 'package:he_shecret/provider/state_provider.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

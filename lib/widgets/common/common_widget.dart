@@ -1,7 +1,7 @@
-import 'package:first_app/common/common_function.dart';
-import 'package:first_app/widgets/common/custom_text_field.dart';
-import 'package:first_app/widgets/common/flat_button.dart';
-import 'package:first_app/widgets/custom_widget.dart';
+import 'package:he_shecret/common/common_function.dart';
+import 'package:he_shecret/widgets/common/custom_text_field.dart';
+import 'package:he_shecret/widgets/common/flat_button.dart';
+import 'package:he_shecret/widgets/custom_widget.dart';
 
 import 'package:flutter/material.dart';
 

@@ -1,9 +1,9 @@
-import 'package:first_app/widgets/pages/home_page.dart';
-import 'package:first_app/widgets/pages/sign_in_page.dart';
-import 'package:first_app/widgets/pages/sign_up_page.dart';
-import 'package:first_app/widgets/pages/welcome_page.dart';
-import 'package:flutter/foundation.dart';
+import 'package:he_shecret/widgets/pages/playground_page.dart';
+import 'package:he_shecret/widgets/pages/sign_in_page.dart';
+import 'package:he_shecret/widgets/pages/sign_up_page.dart';
+import 'package:he_shecret/widgets/pages/welcome_page.dart';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -29,14 +29,20 @@ import 'package:go_router/go_router.dart';
 //   }
 // },
 
+///
+/// FRouteName
+///
 class FRouteName {
   static const String welcome = 'welcome';
   static const String signUp = 'signUp';
   static const String signIn = 'signIn';
 
-  static const String home = 'home';
+  static const String playground = 'playground';
 }
 
+///
+/// FAppRoute
+///
 class FAppRoute {
   static void go(BuildContext context, String routeName) {
     context.goNamed(routeName);
@@ -51,6 +57,9 @@ class FAppRoute {
   }
 }
 
+///
+/// FRouteWrapper
+///
 class FRouteWrapper {
   static final GoRouter _router = GoRouter(
     debugLogDiagnostics: kDebugMode ? true : false,
@@ -59,32 +68,40 @@ class FRouteWrapper {
       GoRoute(
         name: FRouteName.welcome,
         path: '/',
-        builder: (BuildContext context, GoRouterState state) {
-          return const FWelcomePage();
-        },
+        pageBuilder: (context, state) => _slidePageBuilder(context, state, const FWelcomePage()),
         routes: [
           GoRoute(
               name: FRouteName.signUp,
               path: '$FRouteName.signUp',
-              builder: (BuildContext context, GoRouterState state) {
-                return const FSignUpPage();
-              }),
+              pageBuilder: (context, state) => _slidePageBuilder(context, state, const FSignUpPage())),
           GoRoute(
               name: FRouteName.signIn,
               path: '$FRouteName.signIn',
-              builder: (BuildContext context, GoRouterState state) {
-                return const FSignInPage();
-              }),
+              pageBuilder: (context, state) => _slidePageBuilder(context, state, const FSignInPage())),
         ],
       ),
       GoRoute(
-          name: FRouteName.home,
-          path: '/$FAppRoute.home',
-          builder: (BuildContext context, GoRouterState state) {
-            return const FHomePage();
-          }),
+          name: FRouteName.playground,
+          path: '/$FAppRoute.playground',
+          pageBuilder: (context, state) => _slidePageBuilder(context, state, const FPlaygroundPage())),
     ],
   );
 
   static GoRouter route() => _router;
+
+  static _slidePageBuilder(
+    BuildContext context,
+    GoRouterState state,
+    Widget child,
+  ) =>
+      CustomTransitionPage<void>(
+          key: state.pageKey,
+          child: child,
+          transitionDuration: const Duration(milliseconds: 200),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) => SlideTransition(
+              position: animation.drive(Tween<Offset>(
+                begin: const Offset(1.0, 0.0),
+                end: Offset.zero,
+              ).chain(CurveTween(curve: Curves.ease))),
+              child: child));
 }

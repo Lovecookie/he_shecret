@@ -1,6 +1,6 @@
-import 'package:first_app/common/common_font.dart';
-import 'package:first_app/common/route_wrapper.dart';
-import 'package:first_app/widgets/common/common_widget.dart';
+import 'package:he_shecret/common/common_font.dart';
+import 'package:he_shecret/common/route_wrapper.dart';
+import 'package:he_shecret/widgets/common/common_widget.dart';
 import 'package:flutter/material.dart';
 
 class FWelcomePage extends StatefulWidget {

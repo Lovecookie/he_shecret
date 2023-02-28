@@ -1,7 +1,7 @@
-import 'package:first_app/common/common_function.dart';
-import 'package:first_app/common/route_wrapper.dart';
-import 'package:first_app/common/utility.dart';
-import 'package:first_app/widgets/common/common_widget.dart';
+import 'package:he_shecret/common/common_function.dart';
+import 'package:he_shecret/common/route_wrapper.dart';
+import 'package:he_shecret/common/utility.dart';
+import 'package:he_shecret/widgets/common/common_widget.dart';
 
 import 'package:flutter/material.dart';
 
@@ -91,71 +91,7 @@ class _FSignInPageState extends State<FSignInPage> {
         ));
       },
     ));
-
-    // return Container(
-    //   height: MediaQuery.of(context).size.height - 88,
-    //   padding: const EdgeInsets.symmetric(horizontal: 40),
-    //   child: Form(
-    //       key: _fromGlobalKey,
-    //       child: Column(
-    //         mainAxisAlignment: MainAxisAlignment.center,
-    //         crossAxisAlignment: CrossAxisAlignment.center,
-    //         children: <Widget>[
-    //           FCommonWidget.flatTextField('Name', controller: _nameController),
-    //           FCommonWidget.flatTextField('Enter email', controller: _emailController, isEmail: true),
-    //           FCommonWidget.flatTextField('Enter password', controller: _passwordController, isPassword: true),
-    //           FCommonWidget.flatTextField('Confirm password', controller: _confirmController, isPassword: true),
-    //           Container(
-    //             margin: const EdgeInsets.symmetric(vertical: 20),
-    //             child: FCommonWidget.submitButton(
-    //                 context: context, label: 'Sign up', onPressed: () => _submitForm(context)),
-    //           ),
-    //         ],
-    //       )),
-    // );
   }
-
-  // Widget _entryField(String hint,
-  //     {required TextEditingController controller, bool isPassword = false, bool isEmail = false}) {
-  //   return Container(
-  //     margin: const EdgeInsets.symmetric(vertical: 15),
-  //     decoration: BoxDecoration(
-  //       color: Colors.grey.shade200,
-  //       borderRadius: BorderRadius.circular(30),
-  //     ),
-  //     child: TextField(
-  //       controller: controller,
-  //       keyboardType: isEmail ? TextInputType.emailAddress : TextInputType.text,
-  //       style: const TextStyle(
-  //         fontStyle: FontStyle.normal,
-  //         fontWeight: FontWeight.normal,
-  //       ),
-  //       obscureText: isPassword,
-  //       decoration: InputDecoration(
-  //         hintText: hint,
-  //         border: InputBorder.none,
-  //         focusedBorder: const OutlineInputBorder(
-  //           borderRadius: BorderRadius.all(
-  //             Radius.circular(30.0),
-  //           ),
-  //           borderSide: BorderSide(color: Colors.blue),
-  //         ),
-  //         contentPadding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-  //       ),
-  //     ),
-  //   );
-  // }
-
-  // Widget _submitButton(BuildContext context) {
-  //   return Container(
-  //     margin: const EdgeInsets.symmetric(vertical: 35),
-  //     child: FFlatButton(
-  //       label: 'Sign up',
-  //       onPressed: () => _submitForm(context),
-  //       borderRadius: 30,
-  //     ),
-  //   );
-  // }
 
   void _submitForm(BuildContext context) {
     if (_emailController.text.isEmpty) {
@@ -174,6 +110,6 @@ class _FSignInPageState extends State<FSignInPage> {
       return;
     }
 
-    FAppRoute.go(context, FRouteName.home);
+    FAppRoute.go(context, FRouteName.playground);
   }
 }
