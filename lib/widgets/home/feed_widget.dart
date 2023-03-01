@@ -1,5 +1,5 @@
+import 'package:he_shecret/common/common_enum.dart';
 import 'package:he_shecret/common/common_font.dart';
-import 'package:he_shecret/common/common_url.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -7,14 +7,29 @@ import 'package:he_shecret/models/user_feed_model.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // ignore: must_be_immutable
-class FFeedWidget extends HookConsumerWidget {
+class FFeedWidget extends ConsumerWidget {
   late FUserFeedModel userFeedModel;
   late double height;
 
-  FFeedWidget({super.key, required this.userFeedModel, this.height = 350.0});
+  FFeedWidget({super.key, required this.userFeedModel, this.height = 300.0});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    switch (userFeedModel.feedContentType) {
+      case EFeedContentType.none:
+      case EFeedContentType.content:
+        {
+          height = 300;
+        }
+        break;
+      case EFeedContentType.image:
+      case EFeedContentType.video:
+        {
+          height = 500;
+        }
+        break;
+    }
+
     return Container(
       decoration: BoxDecoration(
         border: Border.all(
@@ -33,17 +48,30 @@ class FFeedWidget extends HookConsumerWidget {
     );
   }
 
+  String _cutMessage() {
+    if (255 < userFeedModel.secretMessage.length) {
+      const String added = ' ......';
+
+      var result = userFeedModel.secretMessage.substring(0, 255);
+      return result + added;
+    }
+
+    return userFeedModel.secretMessage;
+  }
+
   Widget _feedContentView() {
+    String cutMessage = _cutMessage();
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         const SizedBox(
           height: 5,
         ),
-        Text(userFeedModel.secretMessage),
+        Text(cutMessage),
         Container(
-          alignment: Alignment.bottomCenter,
-          height: 25.0,
+          // alignment: Alignment.bottomCenter,
+          height: 100.0,
           color: Colors.lightBlue.shade100,
         )
       ],

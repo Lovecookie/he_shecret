@@ -1,17 +1,15 @@
 import 'package:he_shecret/common/common_function.dart';
 import 'package:he_shecret/models/user_feed_model.dart';
 import 'package:he_shecret/provider/state_provider.dart';
-import 'package:he_shecret/widgets/feed_box/feed_widget.dart';
+import 'package:he_shecret/widgets/home/feed_widget.dart';
 
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class HomeSubPage extends HookConsumerWidget {
+class HomeSubPage extends ConsumerWidget {
   const HomeSubPage({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final List<int> feeds = [1, 2, 3, 4, 5, 6, 7, 8];
-
     return ref.watch(feedFutureProvider(0)).when(
       loading: () {
         return _body(notCompletedText: "Loading...");

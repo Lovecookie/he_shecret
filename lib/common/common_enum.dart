@@ -37,6 +37,7 @@ enum ENotificationType {
 
 enum EFeedContentType {
   none,
+  content,
   image,
   video,
 }
