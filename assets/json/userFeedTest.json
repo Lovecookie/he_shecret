@@ -1,0 +1,92 @@
+[
+    {
+        "key": "feed1",
+        "userId": 10001,
+        "email": "user1@example.com",
+        "displayName": "User 1",
+        "userTag": "#user1",
+        "profileImage": "https://picsum.photos/200/200",
+        "secretMessage": "When you reach the end of your rope, tie a knot in it and hang on. Spread love everywhere you go."
+    },
+    {
+        "key": "feed2",
+        "userId": 10002,
+        "email": "user2@example.com",
+        "displayName": "User 2",
+        "userTag": "#user2",
+        "profileImage": "https://picsum.photos/200/200",
+        "secretMessage": "Education is the most powerful weapon which you can use to change the world."
+    },
+    {
+        "key": "feed3",
+        "userId": 10003,
+        "email": "user3@example.com",
+        "displayName": "User 3",
+        "userTag": "#user3",
+        "profileImage": "https://picsum.photos/200/200",
+        "secretMessage": "It is during our darkest moments that we must focus to see the light. Believe you can and you're halfway there."
+    },
+    {
+        "key": "feed4",
+        "userId": 10004,
+        "email": "user4@example.com",
+        "displayName": "User 4",
+        "userTag": "#user4",
+        "profileImage": "https://picsum.photos/200/200",
+        "secretMessage": "Success is not final, failure is not fatal, it's the courage to continue that counts. Life is what happens when you're busy making other plans."
+    },
+    {
+        "key": "feed5",
+        "userId": 10005,
+        "email": "user5@example.com",
+        "displayName": "User 5",
+        "userTag": "#user5",
+        "profileImage": "https://picsum.photos/200/200",
+        "secretMessage": "The only way to do great work is to love what you do. If you haven't found it yet, keep looking. Don't settle. As with all matters of the heart, you'll know when you find it."
+    },
+    {
+        "key": "feed6",
+        "userId": 10006,
+        "email": "user6@example.com",
+        "displayName": "User 6",
+        "userTag": "#user6",
+        "profileImage": "https://picsum.photos/200/200",
+        "secretMessage": "Spread love everywhere you go. Let no one ever come to you without leaving happier. The future belongs to those who believe in the beauty of their dreams."
+    },
+    {
+        "key": "feed7",
+        "userId": 10007,
+        "email": "user7@example.com",
+        "displayName": "User 7",
+        "userTag": "#user7",
+        "profileImage": "https://picsum.photos/200/200",
+        "secretMessage": "You are never too old to set another goal or to dream a new dream. If you set your goals ridiculously high and it's"
+    },
+    {
+        "key": "feed8",
+        "userId": 10008,
+        "email": "user8@example.com",
+        "displayName": "User 8",
+        "userTag": "#user8",
+        "profileImage": "https://picsum.photos/200/200",
+        "secretMessage": "You are never too old to set another goal or to dream a new dream. If you set your goals ridiculously high and it's"
+    },
+    {
+        "key": "feed9",
+        "userId": 10009,
+        "email": "user9@example.com",
+        "displayName": "User 9",
+        "userTag": "#user9",
+        "profileImage": "https://picsum.photos/200/200",
+        "secretMessage": "You are never too old to set another goal or to dream a new dream. If you set your goals ridiculously high and it's"
+    },
+    {
+        "key": "feed10",
+        "userId": 10010,
+        "email": "user10@example.com",
+        "displayName": "User 10",
+        "userTag": "#user10",
+        "profileImage": "https://picsum.photos/200/200",
+        "secretMessage": "You are never too old to set another goal or to dream a new dream. If you set your goals ridiculously high and it's"
+    }
+]

@@ -43,6 +43,10 @@ class AppStateNotifier extends StateNotifier<AppState> {
   }
 
   void setPageIndex(int pageIndex) {
+    if (state.getPageIndex() == pageIndex) {
+      return;
+    }
+
     state = state.copyWith(pageIndex: pageIndex);
   }
 }

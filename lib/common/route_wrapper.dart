@@ -7,28 +7,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-// GoRoute(
-//    name: 'song',
-//    path: 'songs/:songId',
-//    builder: /* ... */,
-//  ),
-// To navigate to a route using its name, call goNamed:
-
-// TextButton(
-//   onPressed: () {
-//     context.goNamed('song', params: {'songId': 123});
-//   },
-//   child: const Text('Go to song 2'),
-// ),
-
-// redirect: (BuildContext context, GoRouterState state) {
-//   if (AuthState.of(context).isSignedIn) {
-//     return context.namedLocation('signIn');
-//   } else {
-//     return null;
-//   }
-// },
-
 ///
 /// FRouteName
 ///

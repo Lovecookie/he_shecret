@@ -1,8 +1,6 @@
 enum ERouteMainCategory {
   welcome,
   home,
-  // signUp,
-  // signIn,
 }
 
 enum EAuthStatusType {
@@ -35,4 +33,10 @@ enum ENotificationType {
   follow,
   mention,
   like,
+}
+
+enum EFeedContentType {
+  none,
+  image,
+  video,
 }

@@ -18,12 +18,12 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
 class AuthState extends AppState {
   EAuthStatusType authStatusType = EAuthStatusType.notDetermined;
   late Int64 userId;
-  UserModel? _userModel;
+  FUserModel? _userModel;
 
   AuthState({required super.isBusy, required super.pageIndex});
 
-  UserModel? get userModel => _userModel;
-  UserModel? get profileUserModel => _userModel;
+  FUserModel? get userModel => _userModel;
+  FUserModel? get profileUserModel => _userModel;
 
   String signIn(String email, String password, {required BuildContext context}) {
     setBusy(true);
