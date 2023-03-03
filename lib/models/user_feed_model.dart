@@ -35,7 +35,8 @@ class FUserFeedModel extends Equatable {
       displayName: json['displayName'],
       userTag: json['userTag'],
       profileImage: json['profileImage'] ?? '',
-      feedContentType: json['feedContentType'] ?? EFeedContentType.none,
+      feedContentType:
+          json['feedContentType'] != null ? EFeedContentType.values[json['feedContentType']] : EFeedContentType.content,
       contentLink: json['contentLink'] ?? '',
       secretMessage: json['secretMessage'] ?? '',
     );

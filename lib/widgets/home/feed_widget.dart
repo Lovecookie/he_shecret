@@ -1,9 +1,9 @@
-import 'package:he_shecret/common/common_enum.dart';
 import 'package:he_shecret/common/common_font.dart';
+import 'package:he_shecret/common/webview/web_link_view_widget.dart';
+import 'package:he_shecret/models/user_feed_model.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:he_shecret/models/user_feed_model.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 // ignore: must_be_immutable
@@ -15,20 +15,22 @@ class FFeedWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    switch (userFeedModel.feedContentType) {
-      case EFeedContentType.none:
-      case EFeedContentType.content:
-        {
-          height = 300;
-        }
-        break;
-      case EFeedContentType.image:
-      case EFeedContentType.video:
-        {
-          height = 500;
-        }
-        break;
-    }
+    // switch (userFeedModel.feedContentType) {
+    //   case EFeedContentType.none:
+    //   case EFeedContentType.content:
+    //     {
+    //       height = 300;
+    //     }
+    //     break;
+    //   case EFeedContentType.image:
+    //   case EFeedContentType.video:
+    //     {
+    //       height = 500;
+    //     }
+    //     break;
+    // }
+
+    height = 500;
 
     return Container(
       decoration: BoxDecoration(
@@ -39,24 +41,15 @@ class FFeedWidget extends ConsumerWidget {
       ),
       padding: const EdgeInsets.symmetric(horizontal: 10.0),
       height: height,
-      child: Column(
-        children: <Widget>[
-          _feedNameBar(),
-          _feedContentView(),
-        ],
+      child: Expanded(
+        child: Column(
+          children: <Widget>[
+            _feedNameBar(),
+            _feedContentView(),
+          ],
+        ),
       ),
     );
-  }
-
-  String _cutMessage() {
-    if (255 < userFeedModel.secretMessage.length) {
-      const String added = ' ......';
-
-      var result = userFeedModel.secretMessage.substring(0, 255);
-      return result + added;
-    }
-
-    return userFeedModel.secretMessage;
   }
 
   Widget _feedContentView() {
@@ -70,9 +63,12 @@ class FFeedWidget extends ConsumerWidget {
         ),
         Text(cutMessage),
         Container(
-          // alignment: Alignment.bottomCenter,
-          height: 100.0,
+          height: 300,
           color: Colors.lightBlue.shade100,
+          child: const FWebLinkViewWidget(
+            height: 290.0,
+            linkUrl: 'https://www.youtube.com/embed/IdjDjxNn9ws',
+          ),
         )
       ],
     );
@@ -86,7 +82,7 @@ class FFeedWidget extends ConsumerWidget {
       child: Row(
         children: <Widget>[
           _simpleImageIcon(
-            userFeedModel.profileImage, // FCommonUrl.picsumRandom,
+            userFeedModel.profileImage,
             width: 35,
             height: 35,
           ),
@@ -145,5 +141,16 @@ class FFeedWidget extends ConsumerWidget {
       placeholder: (context, url) => const CircularProgressIndicator(),
       errorWidget: (context, url, error) => const Icon(Icons.people_alt_rounded),
     );
+  }
+
+  String _cutMessage() {
+    if (255 < userFeedModel.secretMessage.length) {
+      const String added = ' ......(continue)';
+
+      var result = userFeedModel.secretMessage.substring(0, 255);
+      return result + added;
+    }
+
+    return userFeedModel.secretMessage;
   }
 }

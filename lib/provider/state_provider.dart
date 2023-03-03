@@ -24,7 +24,7 @@ final authStateProvier = StateNotifierProvider<AuthStateNotifier, AuthState>((re
 /// feed view state provider
 ///
 final feedFutureProvider = FutureProvider.autoDispose.family<List<FUserFeedModel>, int>((ref, feedId) async {
-  await Future.delayed(const Duration(seconds: 2));
+  await Future.delayed(const Duration(milliseconds: 300));
 
   final String response = await rootBundle.loadString('assets/json/userFeedTest.json');
 

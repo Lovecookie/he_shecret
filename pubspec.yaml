@@ -47,6 +47,7 @@ dependencies:
     fixnum: ^1.1.0
     cached_network_image: ^3.2.3
     image: ^4.0.15
+    webview_flutter: ^4.0.5
 
 dev_dependencies:
     flutter_test:
