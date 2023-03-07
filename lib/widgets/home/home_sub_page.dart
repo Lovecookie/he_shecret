@@ -12,7 +12,7 @@ class HomeSubPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return ref.watch(feedFutureProvider(0)).when(
       loading: () {
-        return _body(notCompletedText: "Loading...");
+        return _body(isLoading: true);
       },
       error: (err, stack) {
         return _body(notCompletedText: "Error...");
@@ -23,7 +23,7 @@ class HomeSubPage extends ConsumerWidget {
     );
   }
 
-  Widget _body({List<FUserFeedModel>? userFeeds, String notCompletedText = ""}) {
+  Widget _body({List<FUserFeedModel>? userFeeds, bool isLoading = false, String notCompletedText = ""}) {
     return SafeArea(
       child: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constrains) {
@@ -32,9 +32,9 @@ class HomeSubPage extends ConsumerWidget {
               minWidth: constrains.maxWidth,
               minHeight: constrains.maxHeight,
             ),
-            child: notCompletedText == ""
-                ? _feedListView(userFeeds!)
-                : _emptyView(context: context, text: notCompletedText),
+            child: userFeeds != null
+                ? _feedListView(userFeeds)
+                : _emptyView(context: context, isLoading: isLoading, text: notCompletedText),
           );
         },
       ),
@@ -43,6 +43,7 @@ class HomeSubPage extends ConsumerWidget {
 
   Container _emptyView({
     required BuildContext context,
+    required isLoading,
     required String text,
   }) {
     return Container(
@@ -51,23 +52,10 @@ class HomeSubPage extends ConsumerWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Text(text),
+          isLoading ? const CircularProgressIndicator() : Text(text),
         ],
       ),
     );
-    // return SingleChildScrollView(
-    //     child: ConstrainedBox(
-    //         constraints: BoxConstraints(
-    //           minWidth: constrains.maxWidth,
-    //           minHeight: constrains.maxHeight,
-    //         ),
-    //         child: Column(
-    //           mainAxisAlignment: MainAxisAlignment.center,
-    //           crossAxisAlignment: CrossAxisAlignment.center,
-    //           children: const <Widget>[
-
-    //           ],
-    //         )));
   }
 
   CustomScrollView _feedListView(List<FUserFeedModel> userFeeds) {

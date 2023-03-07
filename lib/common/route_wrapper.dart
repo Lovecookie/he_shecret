@@ -1,16 +1,15 @@
-import 'package:he_shecret/widgets/pages/playground_page.dart';
-import 'package:he_shecret/widgets/pages/sign_in_page.dart';
-import 'package:he_shecret/widgets/pages/sign_up_page.dart';
-import 'package:he_shecret/widgets/pages/welcome_page.dart';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:he_shecret/widgets/pages/playground_page.dart';
+import 'package:he_shecret/widgets/pages/sign_up_page.dart';
+import 'package:he_shecret/widgets/pages/welcome_page.dart';
 
 ///
 /// FRouteName
 ///
 class FRouteName {
+  static const String permission = 'permission';
   static const String welcome = 'welcome';
   static const String signUp = 'signUp';
   static const String signIn = 'signIn';
@@ -55,7 +54,7 @@ class FRouteWrapper {
           GoRoute(
               name: FRouteName.signIn,
               path: '$FRouteName.signIn',
-              pageBuilder: (context, state) => _slidePageBuilder(context, state, const FSignInPage())),
+              pageBuilder: (context, state) => _slidePageBuilder(context, state, const FSignUpPage())),
         ],
       ),
       GoRoute(
@@ -65,7 +64,7 @@ class FRouteWrapper {
     ],
   );
 
-  static GoRouter route() => _router;
+  static GoRouter get router => _router;
 
   static _slidePageBuilder(
     BuildContext context,

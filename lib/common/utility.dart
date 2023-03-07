@@ -1,10 +1,9 @@
 import 'dart:developer' as developer;
 
-import 'package:he_shecret/common/common_function.dart';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:he_shecret/common/widgets/custom_snack_bar.dart';
 import 'package:intl/intl.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -193,37 +192,22 @@ class FUtility {
 
   static bool validateCredentials(BuildContext context, String? email, String? password) {
     if (email == null || email.isEmpty) {
-      customSnackBar(context, 'Please enter email id');
+      FCustomSnackBar.fixedSnackBar(context, 'Please enter email id');
       return false;
     } else if (password == null || password.isEmpty) {
-      customSnackBar(context, 'Please enter password');
+      FCustomSnackBar.fixedSnackBar(context, 'Please enter password');
       return false;
     } else if (password.length < 8) {
-      customSnackBar(context, 'Password must me 8 character long');
+      FCustomSnackBar.fixedSnackBar(context, 'Password must me 8 character long');
       return false;
     }
 
     var status = validateEmail(email);
     if (!status) {
-      customSnackBar(context, 'Please enter valid email id');
+      FCustomSnackBar.fixedSnackBar(context, 'Please enter valid email id');
       return false;
     }
     return true;
-  }
-
-  static customSnackBar(BuildContext context, String msg,
-      {double height = 30, Color? fontColor, Color? backgroundColor}) {
-    ScaffoldMessenger.of(context).hideCurrentSnackBar();
-    final snackBar = SnackBar(
-      backgroundColor: backgroundColor ?? ownerColorScheme(context).primaryContainer,
-      content: Text(
-        msg,
-        style: TextStyle(
-          color: fontColor ?? Colors.black87,
-        ),
-      ),
-    );
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   static bool validateEmail(String email) {
@@ -293,7 +277,7 @@ class FUtility {
   }) {
     var data = ClipboardData(text: text);
     Clipboard.setData(data);
-    customSnackBar(context, message);
+    FCustomSnackBar.fixedSnackBar(context, message);
   }
 
   static Locale getLocale(BuildContext context) {

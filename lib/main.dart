@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      routerConfig: FRouteWrapper.route(),
+      routerConfig: FRouteWrapper.router,
       // title: 'My Secret Diary',
       theme: ThemeData(
         useMaterial3: true,

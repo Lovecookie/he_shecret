@@ -48,6 +48,8 @@ dependencies:
     cached_network_image: ^3.2.3
     image: ^4.0.15
     webview_flutter: ^4.0.5
+    permission_handler: ^10.2.0
+    fluttertoast: ^8.2.1
 
 dev_dependencies:
     flutter_test:

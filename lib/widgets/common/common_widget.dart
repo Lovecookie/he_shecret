@@ -20,15 +20,18 @@ class FCommonWidget {
     );
   }
 
-  static Widget submitButton({
-    required BuildContext context,
-    required String label,
-    required void Function() onPressed,
-  }) {
+  static Widget submitButton(
+      {required BuildContext context,
+      required String label,
+      required void Function() onPressed,
+      Color? color,
+      EdgeInsetsGeometry? padding}) {
     return FFlatButton(
       label: label,
       onPressed: onPressed,
       borderRadius: 30,
+      color: color,
+      padding: padding ?? const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
     );
   }
 
@@ -37,6 +40,7 @@ class FCommonWidget {
     required BuildContext context,
     Widget? leadingIcon,
     List<Widget>? actionWidgets,
+    Color? color,
   }) {
     return AppBar(
       centerTitle: true,
@@ -45,6 +49,7 @@ class FCommonWidget {
         context: context,
         style: TextStyle(fontSize: 20, color: ownerColorScheme(context).primary),
       ),
+      backgroundColor: color,
       leading: leadingIcon,
       actions: actionWidgets,
     );

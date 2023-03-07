@@ -1,6 +1,8 @@
 import 'package:he_shecret/common/common_font.dart';
 import 'package:he_shecret/common/webview/web_link_view_widget.dart';
+import 'package:he_shecret/common/widgets/custom_snack_bar.dart';
 import 'package:he_shecret/models/user_feed_model.dart';
+import 'package:he_shecret/widgets/common/common_icon_button.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -35,19 +37,58 @@ class FFeedWidget extends ConsumerWidget {
     return Container(
       decoration: BoxDecoration(
         border: Border.all(
-          color: Colors.lightBlue.shade200,
+          color: Colors.black38,
           width: 0.5,
         ),
       ),
       padding: const EdgeInsets.symmetric(horizontal: 10.0),
       height: height,
-      child: Expanded(
-        child: Column(
-          children: <Widget>[
-            _feedNameBar(),
-            _feedContentView(),
-          ],
-        ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          _feedNameBar(),
+          _feedContentView(),
+          _feedBottomBar(context),
+        ],
+      ),
+    );
+  }
+
+  Widget _feedBottomBar(BuildContext context) {
+    return SizedBox(
+      height: 50.0,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: <Widget>[
+          FIconButton.createFeedWidgetIcon(
+            onPressed: () {
+              FCustomSnackBar.floatingSnackBar(context, '추천하였습니다.');
+            },
+            icon: const Icon(Icons.thumb_up_alt_outlined),
+            selectedIcon: const Icon(Icons.thumb_up_alt_rounded),
+          ),
+          FIconButton.createFeedWidgetIcon(
+            onPressed: () {
+              FCustomSnackBar.floatingSnackBar(context, '비추천하였습니다.');
+            },
+            icon: const Icon(Icons.thumb_down_alt_outlined),
+            selectedIcon: const Icon(Icons.thumb_down_alt_rounded),
+          ),
+          FIconButton.createFeedWidgetIcon(
+            onPressed: () {
+              FCustomSnackBar.floatingSnackBar(context, '커피 한잔을 보냈습니다.');
+            },
+            icon: const Icon(Icons.free_breakfast_outlined),
+            selectedIcon: const Icon(Icons.free_breakfast_rounded),
+          ),
+          FIconButton.createFeedWidgetIcon(
+            onPressed: () {
+              FCustomSnackBar.floatingSnackBar(context, '핫한 게시글로 추천하였습니다.');
+            },
+            icon: const Icon(Icons.local_fire_department_outlined),
+            selectedIcon: const Icon(Icons.local_fire_department_rounded),
+          ),
+        ],
       ),
     );
   }
@@ -55,22 +96,19 @@ class FFeedWidget extends ConsumerWidget {
   Widget _feedContentView() {
     String cutMessage = _cutMessage();
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        const SizedBox(
-          height: 5,
-        ),
-        Text(cutMessage),
-        Container(
-          height: 300,
-          color: Colors.lightBlue.shade100,
-          child: const FWebLinkViewWidget(
-            height: 290.0,
+    return Flexible(
+      fit: FlexFit.tight,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          const SizedBox(height: 5.0),
+          Text(cutMessage),
+          const FWebLinkViewWidget(
+            height: 250.0,
             linkUrl: 'https://www.youtube.com/embed/IdjDjxNn9ws',
           ),
-        )
-      ],
+        ],
+      ),
     );
   }
 

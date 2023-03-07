@@ -1,6 +1,9 @@
 import 'package:he_shecret/common/common_font.dart';
 import 'package:he_shecret/common/route_wrapper.dart';
+import 'package:he_shecret/common/widgets/background_image_widget.dart';
+import 'package:he_shecret/widgets/common/common_string.dart';
 import 'package:he_shecret/widgets/common/common_widget.dart';
+
 import 'package:flutter/material.dart';
 
 class FWelcomePage extends StatefulWidget {
@@ -14,69 +17,72 @@ class _FWelcomePageState extends State<FWelcomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: FCommonWidget.appBarCenterTitle(
-        '',
-        context: context,
-        // leadingIcon: IconButton(
-        //   icon: const Icon(Icons.arrow_back_ios_new_sharp),
-        //   onPressed: () {},
-        // ),
-      ),
-      body: _body(context),
+      // appBar: FCommonWidget.appBarCenterTitle(
+      //   '',
+      //   context: context,
+      // ),
+      body: FBackgroundImageWidget(child: _centerWidget(context)),
     );
   }
 
-  Widget _body(BuildContext context) {
-    return Container(
-      height: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 40),
-      child: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          // crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const Text(
-              '오늘은 어떤 이야기가 숨어 있을까요?',
-              style: TextStyle(
-                fontFamily: FCommonFont.family,
-                fontSize: 20,
-              ),
+  Center _centerWidget(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        // crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const Text(
+            FCommonString.welcomeTodayTitle,
+            style: TextStyle(
+              color: Colors.white,
+              fontFamily: FCommonFont.family,
+              fontSize: 20,
             ),
-            const SizedBox(height: 30),
-            FCommonWidget.submitButton(
+          ),
+          Container(
+            margin: const EdgeInsets.symmetric(vertical: 5.0),
+            padding: const EdgeInsets.symmetric(horizontal: 50.0, vertical: 20.0),
+            child: FCommonWidget.submitButton(
               context: context,
-              label: 'Create Account',
+              label: FCommonString.welcomeCreateAccount,
+              color: Colors.deepOrange.withOpacity(0.5),
               onPressed: () {
                 FAppRoute.push(context, FRouteName.signIn);
               },
             ),
-            const SizedBox(
-              height: 30,
-            ),
-            Container(
-              margin: const EdgeInsets.all(5),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    '이미 계정이 있으신가요?',
-                    style: TextStyle(fontFamily: FCommonFont.family, fontSize: 15),
+          ),
+          Container(
+            margin: const EdgeInsets.all(5),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text(
+                  FCommonString.welcomeAlreadyAccont,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontFamily: FCommonFont.family,
+                    fontSize: 15,
                   ),
-                  const SizedBox(width: 10),
-                  TextButton(
-                    onPressed: () {
-                      FAppRoute.push(context, FRouteName.signUp);
-                    },
-                    child: Text(
-                      '로그인',
-                      style: TextStyle(color: Colors.blue.shade400, fontFamily: FCommonFont.family, fontSize: 15),
+                ),
+                const SizedBox(width: 10),
+                TextButton(
+                  onPressed: () {
+                    FAppRoute.push(context, FRouteName.signUp);
+                  },
+                  child: Text(
+                    FCommonString.welcomeLogin,
+                    style: TextStyle(
+                      color: Colors.blue.shade400,
+                      fontFamily: FCommonFont.family,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w800,
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
