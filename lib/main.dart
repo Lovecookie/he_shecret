@@ -1,5 +1,5 @@
-import 'package:he_shecret/common/route_wrapper.dart';
-import 'package:he_shecret/material-theme/color_schemes.g.dart';
+import 'package:shipcret/common/route_wrapper.dart';
+import 'package:shipcret/material-theme/color_schemes.g.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

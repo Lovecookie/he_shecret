@@ -1,4 +1,4 @@
-import 'package:he_shecret/common/common_enum.dart';
+import 'package:shipcret/common/common_enum.dart';
 
 import 'package:equatable/equatable.dart';
 import 'package:fixnum/fixnum.dart';

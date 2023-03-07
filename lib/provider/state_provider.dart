@@ -1,5 +1,5 @@
-import 'package:he_shecret/models/user_feed_model.dart';
-import 'package:he_shecret/provider/auth_state_notifier.dart';
+import 'package:shipcret/models/user_feed_model.dart';
+import 'package:shipcret/provider/auth_state_notifier.dart';
 import 'app_state_notifier.dart';
 
 import 'dart:convert';

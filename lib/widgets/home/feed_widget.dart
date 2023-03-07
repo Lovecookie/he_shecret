@@ -1,8 +1,8 @@
-import 'package:he_shecret/common/common_font.dart';
-import 'package:he_shecret/common/webview/web_link_view_widget.dart';
-import 'package:he_shecret/common/widgets/custom_snack_bar.dart';
-import 'package:he_shecret/models/user_feed_model.dart';
-import 'package:he_shecret/widgets/common/common_icon_button.dart';
+import 'package:shipcret/common/common_font.dart';
+import 'package:shipcret/common/webview/web_link_view_widget.dart';
+import 'package:shipcret/common/widgets/custom_snack_bar.dart';
+import 'package:shipcret/models/user_feed_model.dart';
+import 'package:shipcret/widgets/common/common_icon_button.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';

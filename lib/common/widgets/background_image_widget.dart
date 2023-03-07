@@ -1,4 +1,4 @@
-import 'package:he_shecret/common/common_assets.dart';
+import 'package:shipcret/common/common_assets.dart';
 
 import 'dart:ui';
 import 'package:flutter/material.dart';

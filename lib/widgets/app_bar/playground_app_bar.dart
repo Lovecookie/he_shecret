@@ -1,9 +1,9 @@
-import 'package:he_shecret/common/common_function.dart';
-import 'package:he_shecret/provider/state_provider.dart';
+import 'package:shipcret/common/common_function.dart';
+import 'package:shipcret/provider/state_provider.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:he_shecret/widgets/custom_widget.dart';
+import 'package:shipcret/widgets/custom_widget.dart';
 
 class PlaygroundAppBar extends ConsumerWidget implements PreferredSizeWidget {
   final Size barHeight = const Size.fromHeight(56.0);

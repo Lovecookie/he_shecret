@@ -1,8 +1,8 @@
-import 'package:he_shecret/common/common_function.dart';
-import 'package:he_shecret/common/route_wrapper.dart';
-import 'package:he_shecret/common/widgets/custom_snack_bar.dart';
-import 'package:he_shecret/widgets/common/common_string.dart';
-import 'package:he_shecret/widgets/common/common_widget.dart';
+import 'package:shipcret/common/common_function.dart';
+import 'package:shipcret/common/route_wrapper.dart';
+import 'package:shipcret/common/widgets/custom_snack_bar.dart';
+import 'package:shipcret/widgets/common/common_string.dart';
+import 'package:shipcret/widgets/common/common_widget.dart';
 
 import 'package:flutter/material.dart';
 

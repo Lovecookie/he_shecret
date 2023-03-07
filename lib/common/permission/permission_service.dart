@@ -1,5 +1,6 @@
+import 'package:shipcret/common/widgets/app_alert_dialog.dart';
+
 import 'package:flutter/material.dart';
-import 'package:he_shecret/common/widgets/app_alert_dialog.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 abstract class FPermissionService {

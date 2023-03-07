@@ -1,9 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:he_shecret/widgets/pages/playground_page.dart';
-import 'package:he_shecret/widgets/pages/sign_up_page.dart';
-import 'package:he_shecret/widgets/pages/welcome_page.dart';
+import 'package:shipcret/widgets/pages/playground_page.dart';
+import 'package:shipcret/widgets/pages/sign_up_page.dart';
+import 'package:shipcret/widgets/pages/welcome_page.dart';
 
 ///
 /// FRouteName

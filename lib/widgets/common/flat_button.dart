@@ -1,5 +1,5 @@
-import 'package:he_shecret/common/common_function.dart';
-import 'package:he_shecret/common/common_font.dart';
+import 'package:shipcret/common/common_function.dart';
+import 'package:shipcret/common/common_font.dart';
 import 'package:flutter/material.dart';
 
 class FFlatButton extends StatelessWidget {

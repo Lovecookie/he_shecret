@@ -1,8 +1,8 @@
-import 'package:he_shecret/common/common_font.dart';
-import 'package:he_shecret/common/route_wrapper.dart';
-import 'package:he_shecret/common/widgets/background_image_widget.dart';
-import 'package:he_shecret/widgets/common/common_string.dart';
-import 'package:he_shecret/widgets/common/common_widget.dart';
+import 'package:shipcret/common/common_font.dart';
+import 'package:shipcret/common/route_wrapper.dart';
+import 'package:shipcret/common/widgets/background_image_widget.dart';
+import 'package:shipcret/widgets/common/common_string.dart';
+import 'package:shipcret/widgets/common/common_widget.dart';
 
 import 'package:flutter/material.dart';
 

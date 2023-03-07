@@ -1,7 +1,7 @@
-import 'package:he_shecret/common/common_function.dart';
-import 'package:he_shecret/models/user_feed_model.dart';
-import 'package:he_shecret/provider/state_provider.dart';
-import 'package:he_shecret/widgets/home/feed_widget.dart';
+import 'package:shipcret/common/common_function.dart';
+import 'package:shipcret/models/user_feed_model.dart';
+import 'package:shipcret/provider/state_provider.dart';
+import 'package:shipcret/widgets/home/feed_widget.dart';
 
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
