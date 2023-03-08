@@ -42,7 +42,9 @@ class FCustomTextField extends StatelessWidget {
             borderRadius: BorderRadius.all(
               Radius.circular(borderRadius ?? 30.0),
             ),
-            borderSide: BorderSide(color: borderSideColor ?? Colors.blue),
+            borderSide: BorderSide(
+              color: borderSideColor ?? Colors.deepOrange,
+            ),
           ),
           contentPadding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
         ),

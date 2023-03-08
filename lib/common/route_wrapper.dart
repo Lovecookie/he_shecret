@@ -1,9 +1,11 @@
+import 'package:shipcret/widgets/pages/playground_page.dart';
+import 'package:shipcret/widgets/pages/sign_in_page.dart';
+import 'package:shipcret/widgets/pages/sign_up_page.dart';
+import 'package:shipcret/widgets/pages/welcome_page.dart';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:shipcret/widgets/pages/playground_page.dart';
-import 'package:shipcret/widgets/pages/sign_up_page.dart';
-import 'package:shipcret/widgets/pages/welcome_page.dart';
 
 ///
 /// FRouteName
@@ -54,7 +56,7 @@ class FRouteWrapper {
           GoRoute(
               name: FRouteName.signIn,
               path: '$FRouteName.signIn',
-              pageBuilder: (context, state) => _slidePageBuilder(context, state, const FSignUpPage())),
+              pageBuilder: (context, state) => _slidePageBuilder(context, state, const FSignInPage())),
         ],
       ),
       GoRoute(
@@ -74,7 +76,7 @@ class FRouteWrapper {
       CustomTransitionPage<void>(
           key: state.pageKey,
           child: child,
-          transitionDuration: const Duration(milliseconds: 200),
+          transitionDuration: const Duration(milliseconds: 500),
           transitionsBuilder: (context, animation, secondaryAnimation, child) => SlideTransition(
               position: animation.drive(Tween<Offset>(
                 begin: const Offset(1.0, 0.0),

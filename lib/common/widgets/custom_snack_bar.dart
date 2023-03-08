@@ -1,4 +1,4 @@
-import 'package:shipcret/common/common_function.dart';
+import 'package:shipcret/material-theme/common_color.dart';
 
 import 'package:flutter/material.dart';
 
@@ -7,7 +7,7 @@ class FCustomSnackBar {
       {double height = 30, Color? fontColor, Color? backgroundColor}) {
     ScaffoldMessenger.of(context).hideCurrentSnackBar();
     final snackBar = SnackBar(
-      backgroundColor: backgroundColor ?? ownerColorScheme(context).primaryContainer,
+      backgroundColor: backgroundColor ?? FCommonColor.fixedSnackBar,
       content: Text(
         msg,
         style: TextStyle(
@@ -22,7 +22,7 @@ class FCustomSnackBar {
       {double height = 30, Color? fontColor, Color? backgroundColor, int? durationSec}) {
     ScaffoldMessenger.of(context).hideCurrentSnackBar();
     final snackBar = SnackBar(
-      backgroundColor: backgroundColor ?? ownerColorScheme(context).primaryContainer,
+      backgroundColor: backgroundColor ?? FCommonColor.floatingSnackBar,
       content: Text(
         msg,
         style: TextStyle(

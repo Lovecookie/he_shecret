@@ -1,6 +1,8 @@
-import 'package:shipcret/common/common_function.dart';
+import 'package:shipcret/common/common_assets.dart';
 import 'package:shipcret/common/route_wrapper.dart';
+import 'package:shipcret/common/widgets/background_image_widget.dart';
 import 'package:shipcret/common/widgets/custom_snack_bar.dart';
+import 'package:shipcret/material-theme/common_color.dart';
 import 'package:shipcret/widgets/common/common_string.dart';
 import 'package:shipcret/widgets/common/common_widget.dart';
 
@@ -47,20 +49,24 @@ class _FSignUpPageState extends State<FSignUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: FCommonWidget.appBarCenterTitle(
-        FCommonString.signInSignIn,
+        '',
         context: context,
-        color: Colors.white.withOpacity(0.4),
+        color: Colors.transparent,
         leadingIcon: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back_ios_new_sharp,
-            color: ownerColorScheme(context).primary,
+            color: Colors.white,
           ),
           onPressed: () {
             FAppRoute.pop(context);
           },
         ),
       ),
-      body: _body(context),
+      extendBodyBehindAppBar: true,
+      body: FBackgroundImageWidget(
+        image: const AssetImage(FCommonAssets.dreamShip1),
+        child: _body(context),
+      ),
     );
   }
 
@@ -79,15 +85,17 @@ class _FSignUpPageState extends State<FSignUpPage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 FCommonWidget.flatTextField(FCommonString.signUpName, controller: _nameController),
-                FCommonWidget.flatTextField(FCommonString.signUpEmail, controller: _emailController, isEmail: true),
-                FCommonWidget.flatTextField(FCommonString.signUpPassword,
-                    controller: _passwordController, isPassword: true),
+                FCommonWidget.flatTextField(FCommonString.email, controller: _emailController, isEmail: true),
+                FCommonWidget.flatTextField(FCommonString.password, controller: _passwordController, isPassword: true),
                 FCommonWidget.flatTextField(FCommonString.signUpConfrimPassword,
                     controller: _confirmController, isPassword: true),
                 Container(
                   margin: const EdgeInsets.symmetric(vertical: 20),
                   child: FCommonWidget.submitButton(
-                      context: context, label: FCommonString.signInSignIn, onPressed: () => _submitForm(context)),
+                      color: FCommonColor.opacityButton(),
+                      context: context,
+                      label: FCommonString.signInSignIn,
+                      onPressed: () => _submitForm(context)),
                 ),
               ],
             ),

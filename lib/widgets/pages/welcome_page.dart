@@ -1,6 +1,8 @@
+import 'package:shipcret/common/common_assets.dart';
 import 'package:shipcret/common/common_font.dart';
 import 'package:shipcret/common/route_wrapper.dart';
 import 'package:shipcret/common/widgets/background_image_widget.dart';
+import 'package:shipcret/material-theme/common_color.dart';
 import 'package:shipcret/widgets/common/common_string.dart';
 import 'package:shipcret/widgets/common/common_widget.dart';
 
@@ -21,7 +23,10 @@ class _FWelcomePageState extends State<FWelcomePage> {
       //   '',
       //   context: context,
       // ),
-      body: FBackgroundImageWidget(child: _centerWidget(context)),
+      body: FBackgroundImageWidget(
+        image: const AssetImage(FCommonAssets.dreamShip4),
+        child: _centerWidget(context),
+      ),
     );
   }
 
@@ -45,9 +50,9 @@ class _FWelcomePageState extends State<FWelcomePage> {
             child: FCommonWidget.submitButton(
               context: context,
               label: FCommonString.welcomeCreateAccount,
-              color: Colors.deepOrange.withOpacity(0.5),
+              color: FCommonColor.opacityButton(),
               onPressed: () {
-                FAppRoute.push(context, FRouteName.signIn);
+                FAppRoute.push(context, FRouteName.signUp);
               },
             ),
           ),
@@ -67,10 +72,10 @@ class _FWelcomePageState extends State<FWelcomePage> {
                 const SizedBox(width: 10),
                 TextButton(
                   onPressed: () {
-                    FAppRoute.push(context, FRouteName.signUp);
+                    FAppRoute.push(context, FRouteName.signIn);
                   },
                   child: Text(
-                    FCommonString.welcomeLogin,
+                    FCommonString.login,
                     style: TextStyle(
                       color: Colors.blue.shade400,
                       fontFamily: FCommonFont.family,
