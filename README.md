@@ -1,6 +1,6 @@
-# he_shecret
+# schipret
 
-A new Flutter project.
+a secret-carrying ship
 
 ## Getting Started
 
