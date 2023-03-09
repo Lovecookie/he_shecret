@@ -1,4 +1,4 @@
-import 'package:shipcret/common/widgets/cached_image_widget.dart';
+import 'package:shipcret/common/common_assets.dart';
 import 'package:shipcret/models/secret_feed_model.dart';
 
 import 'package:flutter/material.dart';
@@ -22,52 +22,37 @@ class _FSecretFeedWidgetState extends State<FSecretFeedWidget> {
 // color: const Color.fromARGB(255, 246, 200, 187),
   Widget _body(BuildContext context) {
     return Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20.0),
-          color: const Color.fromARGB(255, 246, 200, 187),
-        ),
-        margin: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
-        width: 100.0,
-        height: widget.height,
+        height: double.infinity,
+        decoration: const BoxDecoration(color: Colors.white),
         child: Column(
           children: <Widget>[
-            _feedNameBar(),
+            _feedNameBar(context),
           ],
         ));
   }
 
-  Widget _feedNameBar() {
+  Widget _feedNameBar(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 10.0),
-      width: double.infinity,
-      height: 55,
+      height: MediaQuery.of(context).size.height / 4,
+      color: const Color.fromARGB(255, 184, 194, 199),
       child: Row(
-        children: <Widget>[
-          FCachedImageWidget(
-            url: widget.secretFeedModel.profileImage,
-            width: 45,
-            height: 45,
-          ),
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 5),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Container(
-                  width: 60.0,
-                  height: 13.0,
-                  color: Colors.grey.shade400,
-                ),
-                Container(
-                  width: 50.0,
-                  height: 10.0,
-                  color: Colors.grey.shade300,
-                ),
-              ],
-            ),
-          ),
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          _profileImage(),
         ],
+      ),
+    );
+  }
+
+  Widget _profileImage() {
+    return Container(
+      width: 50,
+      height: 50,
+      decoration: const BoxDecoration(
+        color: Colors.amber,
+        shape: BoxShape.circle,
+        // DecorationImage(image: widget.image, fit: BoxFit.cover),
+        image: DecorationImage(image: AssetImage(FCommonAssets.dreamShip1), fit: BoxFit.cover),
       ),
     );
   }

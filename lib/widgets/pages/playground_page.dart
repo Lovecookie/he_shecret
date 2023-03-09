@@ -1,6 +1,4 @@
-import 'package:shipcret/common/widgets/cached_image_widget.dart';
 import 'package:shipcret/provider/state_provider.dart';
-import 'package:shipcret/widgets/app_bar/playground_app_bar.dart';
 import 'package:shipcret/widgets/bottom_menu/bottom_menu_bar.dart';
 import 'package:shipcret/widgets/home/home_sub_page.dart';
 import 'package:shipcret/widgets/notification/notification_sub_page.dart';
@@ -18,15 +16,6 @@ class FPlaygroundPage extends ConsumerWidget {
     var appState = ref.watch(appStateProvider);
 
     return Scaffold(
-      appBar: const PlaygroundAppBar(
-        leadingIcon: FCachedImageWidget(
-          url: "https://picsum.photos/200/200",
-          width: 55,
-          height: 55,
-        ),
-        toolbarHeight: 35.0,
-      ),
-      extendBodyBehindAppBar: true,
       body: _getPage(appState.getPageIndex()),
       bottomNavigationBar: const FBottomMenuBar(),
     );

@@ -13,15 +13,17 @@ class FBottomMenuBar extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     var appState = ref.watch(appStateProvider);
 
-    return Container(
-      height: 50,
-      decoration: BoxDecoration(
-        color: ownerColorScheme(context).onPrimary,
-      ),
-      child: Row(
-        // mainAxisAlignment: MainAxisAlignment.center,
-        // crossAxisAlignment: CrossAxisAlignment.center,
-        children: _bottomBarIcons(context, ref),
+    return SafeArea(
+      child: Container(
+        height: 50,
+        decoration: BoxDecoration(
+          color: ownerColorScheme(context).onPrimary,
+        ),
+        child: Row(
+          // mainAxisAlignment: MainAxisAlignment.center,
+          // crossAxisAlignment: CrossAxisAlignment.center,
+          children: _bottomBarIcons(context, ref),
+        ),
       ),
     );
   }

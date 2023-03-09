@@ -1,6 +1,6 @@
 {
-    "name": "he_shecret",
-    "short_name": "he_shecret",
+    "name": "shipcret",
+    "short_name": "shipcret",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
