@@ -63,7 +63,7 @@ class _FSignUpPageState extends State<FSignUpPage> {
         ),
       ),
       extendBodyBehindAppBar: true,
-      body: FBackgroundImageWidget(
+      body: FBackgroundBlurWidget(
         image: const AssetImage(FCommonAssets.dreamShip1),
         child: _body(context),
       ),

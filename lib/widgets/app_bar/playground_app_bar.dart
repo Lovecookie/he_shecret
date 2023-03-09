@@ -1,21 +1,21 @@
-import 'package:shipcret/common/common_function.dart';
 import 'package:shipcret/provider/state_provider.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shipcret/widgets/custom_widget.dart';
 
 class PlaygroundAppBar extends ConsumerWidget implements PreferredSizeWidget {
   final Size barHeight = const Size.fromHeight(56.0);
   final PreferredSizeWidget? bottomWidget;
   final Widget? leadingIcon;
   final List<Widget>? actionIcons;
+  final double? toolbarHeight;
 
   const PlaygroundAppBar({
     super.key,
     this.bottomWidget,
     this.leadingIcon,
     this.actionIcons,
+    this.toolbarHeight,
   });
 
   @override
@@ -26,17 +26,10 @@ class PlaygroundAppBar extends ConsumerWidget implements PreferredSizeWidget {
     final pageName = ref.watch(pageNameProvider);
 
     return AppBar(
-      title: customText(
-        pageName,
-        context: context,
-        style: TextStyle(
-          fontSize: 20,
-          color: ownerColorScheme(context).primary,
-        ),
-      ),
+      toolbarHeight: toolbarHeight ?? 50.0,
       // shadowColor: Colors.green.shade200,
       // elevation: 0.3,
-      bottom: bottomWidget ?? _bottomWidget(),
+      // bottom: bottomWidget ?? _bottomWidget(),
       leading: leadingIcon,
       actions: actionIcons,
     );

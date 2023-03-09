@@ -17,13 +17,6 @@ class FBottomMenuBar extends HookConsumerWidget {
       height: 50,
       decoration: BoxDecoration(
         color: ownerColorScheme(context).onPrimary,
-        boxShadow: [
-          BoxShadow(
-            color: ownerColorScheme(context).shadow,
-            offset: const Offset(0, -.1),
-            blurRadius: 0,
-          )
-        ],
       ),
       child: Row(
         // mainAxisAlignment: MainAxisAlignment.center,
@@ -88,8 +81,6 @@ class FBottomMenuBar extends HookConsumerWidget {
             duration: const Duration(milliseconds: CommonConst.animDuration),
             child: IconButton(
               color: selected ? Colors.black87 : Colors.blueGrey.shade100,
-              // highlightColor: selected ? Colors.indigo : Colors.transparent,
-              // splashColor: selected ? Colors.indigo : Colors.transparent,
               padding: const EdgeInsets.all(0),
               alignment: const Alignment(0, 0),
               icon: iconWidget,

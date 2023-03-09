@@ -23,7 +23,7 @@ class _FWelcomePageState extends State<FWelcomePage> {
       //   '',
       //   context: context,
       // ),
-      body: FBackgroundImageWidget(
+      body: FBackgroundBlurWidget(
         image: const AssetImage(FCommonAssets.dreamShip4),
         child: _centerWidget(context),
       ),

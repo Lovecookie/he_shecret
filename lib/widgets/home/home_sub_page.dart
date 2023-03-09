@@ -1,7 +1,7 @@
 import 'package:shipcret/common/common_function.dart';
-import 'package:shipcret/models/user_feed_model.dart';
+import 'package:shipcret/models/secret_feed_model.dart';
 import 'package:shipcret/provider/state_provider.dart';
-import 'package:shipcret/widgets/home/feed_widget.dart';
+import 'package:shipcret/widgets/home/secret_feed_widget.dart';
 
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -10,20 +10,20 @@ class HomeSubPage extends ConsumerWidget {
   const HomeSubPage({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return ref.watch(feedFutureProvider(0)).when(
+    return ref.watch(secretFeedFutureProvider(0)).when(
       loading: () {
         return _body(isLoading: true);
       },
       error: (err, stack) {
         return _body(notCompletedText: "Error...");
       },
-      data: (userFeeds) {
-        return _body(userFeeds: userFeeds);
+      data: (secretFeeds) {
+        return _body(secretFeeds: secretFeeds);
       },
     );
   }
 
-  Widget _body({List<FUserFeedModel>? userFeeds, bool isLoading = false, String notCompletedText = ""}) {
+  Widget _body({List<FSecretFeedModel>? secretFeeds, bool isLoading = false, String notCompletedText = ""}) {
     return SafeArea(
       child: LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constrains) {
@@ -32,8 +32,8 @@ class HomeSubPage extends ConsumerWidget {
               minWidth: constrains.maxWidth,
               minHeight: constrains.maxHeight,
             ),
-            child: userFeeds != null
-                ? _feedListView(userFeeds)
+            child: secretFeeds != null
+                ? _feedListView(secretFeeds)
                 : _emptyView(context: context, isLoading: isLoading, text: notCompletedText),
           );
         },
@@ -58,17 +58,17 @@ class HomeSubPage extends ConsumerWidget {
     );
   }
 
-  CustomScrollView _feedListView(List<FUserFeedModel> userFeeds) {
+  CustomScrollView _feedListView(List<FSecretFeedModel> secretFeeds) {
     return CustomScrollView(
       slivers: <Widget>[
         SliverList(
           delegate: SliverChildBuilderDelegate(
             (BuildContext context, int index) {
-              return FFeedWidget(
-                userFeedModel: userFeeds[index],
+              return FSecretFeedWidget(
+                secretFeedModel: secretFeeds[index],
               );
             },
-            childCount: userFeeds.length,
+            childCount: secretFeeds.length,
           ),
         ),
       ],
