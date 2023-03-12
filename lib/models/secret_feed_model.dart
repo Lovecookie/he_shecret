@@ -60,7 +60,7 @@ class FSecretFeedModel extends Equatable {
       }
 
       final now = DateTime.now();
-      final expired = now.add(Duration(minutes: random.nextInt(10)));
+      final expired = now.add(Duration(minutes: random.nextInt(10) + 2));
 
       data.add({
         'feed_id': random.nextInt(100).toString(),

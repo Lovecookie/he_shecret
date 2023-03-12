@@ -36,7 +36,7 @@ class _FCountDownTextWidgetState extends State<FCountDownTextWidget> {
   void _startCountDown() {
     Future<void>.delayed(const Duration(seconds: 1), () {
       _countDownTime--;
-      if (_countDownTime <= 0) {
+      if (_countDownTime < 0) {
         return;
       }
 

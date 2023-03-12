@@ -10,6 +10,9 @@ class FCommonColor {
   static const subPrimaryMattBlack = Color(0xFF121715);
   static const subPrimaryGodic = Color(0xFF191c1b);
 
+  static Color subPrimaryMattBlackOpacity(double opacity) => const Color(0xFF121715).withOpacity(opacity);
+  static Color subPrimaryGodicOpacity(double opacity) => const Color(0xFF191c1b).withOpacity(opacity);
+
   ///
   /// child primary
   ///
