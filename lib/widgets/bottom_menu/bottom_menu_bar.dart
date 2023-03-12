@@ -1,5 +1,5 @@
 import 'package:shipcret/common/common_const.dart';
-import 'package:shipcret/common/common_function.dart';
+import 'package:shipcret/material-theme/common_color.dart';
 import 'package:shipcret/provider/state_provider.dart';
 import 'package:shipcret/theme/app_icon.dart';
 
@@ -15,13 +15,11 @@ class FBottomMenuBar extends HookConsumerWidget {
 
     return SafeArea(
       child: Container(
-        height: 50,
-        decoration: BoxDecoration(
-          color: ownerColorScheme(context).onPrimary,
+        height: 60,
+        decoration: const BoxDecoration(
+          color: FCommonColor.subPrimaryMattBlack,
         ),
         child: Row(
-          // mainAxisAlignment: MainAxisAlignment.center,
-          // crossAxisAlignment: CrossAxisAlignment.center,
           children: _bottomBarIcons(context, ref),
         ),
       ),
@@ -39,25 +37,25 @@ class FBottomMenuBar extends HookConsumerWidget {
         context: context,
         ref: ref,
         pageIndex: i++,
-        iconWidget: AppIcon.home(),
+        iconWidget: FAppIcon.home(),
       ),
       _makeIcon(
         context: context,
         ref: ref,
         pageIndex: i++,
-        iconWidget: AppIcon.search(),
+        iconWidget: FAppIcon.search(),
       ),
       _makeIcon(
         context: context,
         ref: ref,
         pageIndex: i++,
-        iconWidget: AppIcon.notification(),
+        iconWidget: FAppIcon.notification(),
       ),
       _makeIcon(
         context: context,
         ref: ref,
         pageIndex: i++,
-        iconWidget: AppIcon.message(),
+        iconWidget: FAppIcon.message(),
       ),
     ];
   }
@@ -82,7 +80,7 @@ class FBottomMenuBar extends HookConsumerWidget {
             opacity: CommonConst.alphaOn,
             duration: const Duration(milliseconds: CommonConst.animDuration),
             child: IconButton(
-              color: selected ? Colors.black87 : Colors.blueGrey.shade100,
+              color: selected ? FCommonColor.subPrimaryBlack : FCommonColor.subPrimaryWhite,
               padding: const EdgeInsets.all(0),
               alignment: const Alignment(0, 0),
               icon: iconWidget,

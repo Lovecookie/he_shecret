@@ -1,12 +1,12 @@
 import 'package:shipcret/common/common_font.dart';
 import 'package:shipcret/common/widgets/custom_snack_bar.dart';
 import 'package:shipcret/models/user_feed_model.dart';
-import 'package:shipcret/widgets/common/common_icon_button.dart';
 import 'package:shipcret/widgets/common/common_string.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:shipcret/widgets/common/icon_button.dart';
 
 // ignore: must_be_immutable
 class FFeedWidget extends ConsumerWidget {
@@ -44,28 +44,28 @@ class FFeedWidget extends ConsumerWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
-          FIconButton.createFeedWidgetIcon(
+          FIconButton(
             onPressed: () {
               FCustomSnackBar.floatingSnackBar(context, FCommonString.recommendedIt);
             },
             icon: const Icon(Icons.thumb_up_alt_outlined),
             selectedIcon: const Icon(Icons.thumb_up_alt_rounded),
           ),
-          FIconButton.createFeedWidgetIcon(
+          FIconButton(
             onPressed: () {
               FCustomSnackBar.floatingSnackBar(context, FCommonString.didNotRecommendedIt);
             },
             icon: const Icon(Icons.thumb_down_alt_outlined),
             selectedIcon: const Icon(Icons.thumb_down_alt_rounded),
           ),
-          FIconButton.createFeedWidgetIcon(
+          FIconButton(
             onPressed: () {
               FCustomSnackBar.floatingSnackBar(context, FCommonString.sentCupOfCoffee);
             },
             icon: const Icon(Icons.free_breakfast_outlined),
             selectedIcon: const Icon(Icons.free_breakfast_rounded),
           ),
-          FIconButton.createFeedWidgetIcon(
+          FIconButton(
             onPressed: () {
               FCustomSnackBar.floatingSnackBar(context, FCommonString.recommendedHot);
             },

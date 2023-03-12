@@ -1,5 +1,6 @@
 import 'package:shipcret/common/route_wrapper.dart';
 import 'package:shipcret/material-theme/color_schemes.g.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -26,18 +27,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-// return MaterialApp(
-    //   debugShowCheckedModeBanner: false,
-    //   title: 'Flutter Demo',
-    //   theme: ThemeData(
-    //     useMaterial3: true,
-    //     colorScheme: lightColorScheme,
-    //   ),
-    //   darkTheme: ThemeData(
-    //     useMaterial3: true,
-    //     colorScheme: darkColorScheme,
-    //   ),
-    //   themeMode: ThemeMode.system,
-    //   home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    // );

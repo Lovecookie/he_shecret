@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class AppIcon {
-  AppIcon._();
+class FAppIcon {
+  FAppIcon._();
 
   static Widget home() {
     return const Icon(Icons.home);

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shipcret/widgets/common/common_icon_button.dart';
+import 'package:shipcret/widgets/common/icon_button.dart';
 
 class FOverlappedAppBar extends StatelessWidget {
   const FOverlappedAppBar({
@@ -20,7 +20,8 @@ class FOverlappedAppBar extends StatelessWidget {
           toolbarHeight: 45.0,
           backgroundColor: Colors.transparent,
           elevation: 0,
-          leading: FIconButton.createFeedWidgetIcon(
+          leading: FIconButton(
+            isBackground: true,
             icon: const Icon(Icons.menu),
             selectedIcon: const Icon(Icons.menu_open_outlined),
             onPressed: () {},

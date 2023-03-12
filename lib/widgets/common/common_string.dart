@@ -23,4 +23,10 @@ class FCommonString {
   static const signUpPasswordAndConfirmPasswordDidNotMatch = "비밀번호가 맞지 않습니다.";
 
   static const signInSignIn = "로그인";
+
+  static const follower = "팔로워";
+  static const secretCount = "비밀";
+  static const uncoveredCount = "밝혀진 비밀";
+
+  static const remainedTime = "남은 시간";
 }

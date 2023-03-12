@@ -1,16 +1,19 @@
-import 'package:shipcret/common/common_function.dart';
+import 'package:shipcret/common/common_font.dart';
+import 'package:shipcret/common/common_ui_overlay_style.dart';
+import 'package:shipcret/material-theme/common_color.dart';
 import 'package:shipcret/models/secret_feed_model.dart';
 import 'package:shipcret/provider/state_provider.dart';
-import 'package:shipcret/widgets/app_bar/overlapped_app_bar.dart';
-import 'package:shipcret/widgets/home/secret_feed_widget.dart';
 
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:shipcret/widgets/home/feed_widget_view.dart';
 
 class HomeSubPage extends ConsumerWidget {
   const HomeSubPage({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    FCommonUIOverlayStyle.topStateBar(color: FCommonColor.subPrimaryGodic);
+
     return ref.watch(secretFeedFutureProvider(0)).when(
       loading: () {
         return _body(context, isLoading: true);
@@ -30,23 +33,19 @@ class HomeSubPage extends ConsumerWidget {
     bool isLoading = false,
     String notCompletedText = "",
   }) {
-    return SafeArea(
-      child: Stack(children: [
-        LayoutBuilder(
-          builder: (BuildContext context, BoxConstraints constrains) {
-            return Container(
-              constraints: BoxConstraints(
-                minWidth: constrains.maxWidth,
-                minHeight: constrains.maxHeight,
-              ),
-              child: secretFeeds != null
-                  ? _feedListView(secretFeeds)
-                  : _emptyView(context: context, isLoading: isLoading, text: notCompletedText),
-            );
-          },
-        ),
-        FOverlappedAppBar(context: context)
-      ]),
+    return LayoutBuilder(
+      builder: (BuildContext context, BoxConstraints constrains) {
+        return Container(
+          color: FCommonColor.subPrimaryGodic,
+          constraints: BoxConstraints(
+            minWidth: constrains.maxWidth,
+            minHeight: constrains.maxHeight,
+          ),
+          child: secretFeeds != null
+              ? FFeedWidgetView(secretFeeds) // _feedListView(secretFeeds, context: context)
+              : _emptyView(context: context, isLoading: isLoading, text: notCompletedText),
+        );
+      },
     );
   }
 
@@ -56,32 +55,19 @@ class HomeSubPage extends ConsumerWidget {
     required String text,
   }) {
     return Container(
-      color: ownerColorScheme(context).primaryContainer.withOpacity(0.1),
+      color: FCommonColor.subPrimaryGodic,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          isLoading ? const CircularProgressIndicator() : Text(text),
+          isLoading
+              ? const CircularProgressIndicator()
+              : Text(
+                  text,
+                  style: const TextStyle(color: FCommonColor.subPrimaryWhite, fontFamily: FCommonFont.family),
+                ),
         ],
       ),
     );
-  }
-
-  Widget _feedListView(List<FSecretFeedModel> secretFeeds) {
-    return FSecretFeedWidget(secretFeedModel: secretFeeds[0]);
-    // return CustomScrollView(
-    //   slivers: <Widget>[
-    //     SliverList(
-    //       delegate: SliverChildBuilderDelegate(
-    //         (BuildContext context, int index) {
-    //           return FSecretFeedWidget(
-    //             secretFeedModel: secretFeeds[index],
-    //           );
-    //         },
-    //         childCount: secretFeeds.length,
-    //       ),
-    //     ),
-    //   ],
-    // );
   }
 }
