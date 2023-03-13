@@ -47,19 +47,21 @@ class FFeedWidgetView extends ConsumerWidget {
         // alignment: Alignment.centerLeft,
         margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10.0),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(25.0),
-          child: FBackgroundImageWidget(
+          borderRadius: BorderRadius.circular(20.0),
+          child: FBackgroundStackBlurWidget(
+            // FBackgroundImageWidget(
             width: MediaQuery.of(context).size.width * 0.8,
-            height: 50,
+            height: 150,
             image: AssetImage(secretFeedModel.profileImageUrl),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                  margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
                   padding: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 1.0),
                   decoration: BoxDecoration(
-                    color: FCommonColor.subPrimaryGodicOpacity(0.4),
+                    color: FCommonColor.godicOpacity(0.4),
                     borderRadius: BorderRadius.circular(25.0),
                   ),
                   child: FCountDownTextWidget(

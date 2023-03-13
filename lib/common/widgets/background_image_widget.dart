@@ -76,9 +76,16 @@ class FBackgroundStackBlurWidget extends StatefulWidget {
   final double? width;
   final double? height;
   final BorderRadius? borderRadius;
+  final bool isGradiant;
 
   const FBackgroundStackBlurWidget(
-      {super.key, required this.image, this.width, this.height, required this.child, this.borderRadius});
+      {super.key,
+      required this.image,
+      this.width,
+      this.height,
+      required this.child,
+      this.borderRadius,
+      this.isGradiant = false});
 
   @override
   State<FBackgroundStackBlurWidget> createState() => _FBackgroundStackBlurWidgetState();
@@ -87,31 +94,43 @@ class FBackgroundStackBlurWidget extends StatefulWidget {
 class _FBackgroundStackBlurWidgetState extends State<FBackgroundStackBlurWidget> {
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: widget.borderRadius,
-      child: Container(
-        width: widget.width ?? double.infinity,
-        height: widget.height ?? double.infinity,
-        decoration: BoxDecoration(
-          image: DecorationImage(image: widget.image, fit: BoxFit.fitWidth, filterQuality: FilterQuality.low),
-          color: Colors.black,
+    return Container(
+      width: widget.width ?? double.infinity,
+      height: widget.height ?? double.infinity,
+      decoration: BoxDecoration(
+        image: DecorationImage(image: widget.image, fit: BoxFit.fitWidth, filterQuality: FilterQuality.low),
+        color: Colors.black,
+      ),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 4, sigmaY: 4),
+        child: Container(
+          decoration: widget.isGradiant ? _withGradiant() : _whiteDecoration(),
+          child: widget.child,
         ),
-        child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 2, sigmaY: 2),
-          child: Container(
-            decoration: BoxDecoration(
-                gradient: LinearGradient(begin: Alignment.bottomCenter, end: Alignment.topCenter, colors: [
-              Colors.black.withOpacity(0.85),
-              Colors.black.withOpacity(0.4),
-              Colors.black.withOpacity(0.1),
-              Colors.black.withOpacity(0.0),
-              Colors.black.withOpacity(0.1),
-              Colors.black.withOpacity(0.4),
-              Colors.black.withOpacity(0.85),
-            ])),
-            child: widget.child,
-          ),
-        ),
+      ),
+    );
+  }
+
+  BoxDecoration _whiteDecoration() {
+    return BoxDecoration(
+      color: Colors.white.withOpacity(0.4),
+    );
+  }
+
+  BoxDecoration _withGradiant() {
+    return BoxDecoration(
+      gradient: LinearGradient(
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+        colors: [
+          Colors.black.withOpacity(0.85),
+          Colors.black.withOpacity(0.4),
+          Colors.black.withOpacity(0.1),
+          Colors.black.withOpacity(0.0),
+          Colors.black.withOpacity(0.1),
+          Colors.black.withOpacity(0.4),
+          Colors.black.withOpacity(0.85),
+        ],
       ),
     );
   }

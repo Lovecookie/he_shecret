@@ -17,7 +17,7 @@ class FBottomMenuBar extends HookConsumerWidget {
       child: Container(
         height: 60,
         decoration: const BoxDecoration(
-          color: FCommonColor.subPrimaryMattBlack,
+          color: FCommonColor.mattBlack,
         ),
         child: Row(
           children: _bottomBarIcons(context, ref),

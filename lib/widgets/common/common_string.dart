@@ -29,4 +29,5 @@ class FCommonString {
   static const uncoveredCount = "밝혀진 비밀";
 
   static const remainedTime = "남은 시간";
+  static const search = "검색";
 }

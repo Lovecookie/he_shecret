@@ -12,7 +12,7 @@ class HomeSubPage extends ConsumerWidget {
   const HomeSubPage({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    FCommonUIOverlayStyle.topStateBar(color: FCommonColor.subPrimaryGodic);
+    FCommonUIOverlayStyle.topStateBar(color: FCommonColor.godic);
 
     return ref.watch(secretFeedFutureProvider(0)).when(
       loading: () {
@@ -36,7 +36,7 @@ class HomeSubPage extends ConsumerWidget {
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constrains) {
         return Container(
-          color: FCommonColor.subPrimaryGodic,
+          color: FCommonColor.godic,
           constraints: BoxConstraints(
             minWidth: constrains.maxWidth,
             minHeight: constrains.maxHeight,
@@ -55,7 +55,7 @@ class HomeSubPage extends ConsumerWidget {
     required String text,
   }) {
     return Container(
-      color: FCommonColor.subPrimaryGodic,
+      color: FCommonColor.godic,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,

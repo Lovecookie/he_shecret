@@ -7,11 +7,11 @@ class FCustomSnackBar {
       {double height = 30, Color? fontColor, Color? backgroundColor}) {
     ScaffoldMessenger.of(context).hideCurrentSnackBar();
     final snackBar = SnackBar(
-      backgroundColor: backgroundColor ?? FCommonColor.fixedSnackBar,
+      backgroundColor: backgroundColor ?? FCommonColor.fixedSnackBar(0.7),
       content: Text(
         msg,
         style: TextStyle(
-          color: fontColor ?? Colors.black87,
+          color: fontColor ?? FCommonColor.subPrimaryWhite,
         ),
       ),
     );
@@ -22,11 +22,11 @@ class FCustomSnackBar {
       {double height = 30, Color? fontColor, Color? backgroundColor, int? durationSec}) {
     ScaffoldMessenger.of(context).hideCurrentSnackBar();
     final snackBar = SnackBar(
-      backgroundColor: backgroundColor ?? FCommonColor.floatingSnackBar,
+      backgroundColor: backgroundColor ?? FCommonColor.floatingSnackBar(0.7),
       content: Text(
         msg,
         style: TextStyle(
-          color: fontColor ?? Colors.black87,
+          color: fontColor ?? FCommonColor.subPrimaryWhite,
         ),
       ),
       shape: RoundedRectangleBorder(

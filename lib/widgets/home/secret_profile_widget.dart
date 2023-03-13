@@ -30,7 +30,7 @@ class _FSecretProfileWidgetState extends State<FSecretProfileWidget> {
 
     return Container(
       height: double.infinity,
-      decoration: const BoxDecoration(color: FCommonColor.subPrimaryGodic),
+      decoration: const BoxDecoration(color: FCommonColor.godic),
       child: Column(
         children: <Widget>[
           FSecretProfileCardWidget(
@@ -43,7 +43,7 @@ class _FSecretProfileWidgetState extends State<FSecretProfileWidget> {
             padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 50.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(25.0),
-              color: FCommonColor.subPrimaryMattBlack,
+              color: FCommonColor.mattBlack,
             ),
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -25,7 +25,7 @@ class _FPlaygroundPageState extends ConsumerState<FPlaygroundPage> {
 
   @override
   Widget build(BuildContext context) {
-    FCommonUIOverlayStyle.topStateBar(color: FCommonColor.subPrimaryGodic);
+    FCommonUIOverlayStyle.topStateBar(color: FCommonColor.mattBlack);
 
     var appState = ref.watch(appStateProvider);
 
