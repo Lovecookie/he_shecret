@@ -51,7 +51,7 @@ class FFeedWidgetView extends ConsumerWidget {
           child: FBackgroundStackBlurWidget(
             // FBackgroundImageWidget(
             width: MediaQuery.of(context).size.width * 0.8,
-            height: 150,
+            height: 80,
             image: AssetImage(secretFeedModel.profileImageUrl),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,

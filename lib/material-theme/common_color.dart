@@ -13,7 +13,8 @@ class FCommonColor {
 
   static Color mattBlackOpacity(double opacity) => const Color(0xFF121715).withOpacity(opacity);
   static Color godicOpacity(double opacity) => const Color(0xFF191c1b).withOpacity(opacity);
-  static Color greyYeellowOpacity(double opacity) => const Color(0xFFf5f5f5).withOpacity(opacity);
+  static Color greyYellowOpacity(double opacity) => const Color(0xFFf5f5f5).withOpacity(opacity);
+  static Color subPrimaryWhiteOpacity(double opacity) => Colors.white.withOpacity(opacity);
 
   ///
   /// child primary

@@ -30,6 +30,7 @@ class _FPlaygroundPageState extends ConsumerState<FPlaygroundPage> {
     var appState = ref.watch(appStateProvider);
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: _getPage(appState.getPageIndex()),
       bottomNavigationBar: const FBottomMenuBar(),
     );

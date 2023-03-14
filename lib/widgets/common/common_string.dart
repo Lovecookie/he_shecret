@@ -30,4 +30,5 @@ class FCommonString {
 
   static const remainedTime = "남은 시간";
   static const search = "검색";
+  static const veryHotSecretFeedRightNow = "지금 굉장히 핫한 비밀 피드";
 }
