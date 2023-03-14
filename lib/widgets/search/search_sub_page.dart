@@ -14,6 +14,7 @@ class SearchSubPage extends ConsumerStatefulWidget {
 
 class _SearchSubPageState extends ConsumerState<SearchSubPage> {
   late TextEditingController _searchController;
+  final FocusNode _searchFocusNode = FocusNode();
 
   @override
   void initState() {
@@ -27,23 +28,31 @@ class _SearchSubPageState extends ConsumerState<SearchSubPage> {
     super.dispose();
 
     _searchController.dispose();
+    _searchFocusNode.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       return SafeArea(
-        child: Container(
-          color: FCommonColor.godic,
-          constraints: BoxConstraints(
-            minHeight: constraints.maxHeight,
-            minWidth: constraints.maxWidth,
-          ),
-          child: Column(
-            children: [
-              _searchBar(),
-              _recommendedSearch(),
-            ],
+        child: GestureDetector(
+          onTap: () {
+            if (_searchFocusNode.hasFocus) {
+              _searchFocusNode.unfocus();
+            }
+          },
+          child: Container(
+            color: FCommonColor.godic,
+            constraints: BoxConstraints(
+              minHeight: constraints.maxHeight,
+              minWidth: constraints.maxWidth,
+            ),
+            child: Column(
+              children: [
+                _searchBar(),
+                _recommendedSearch(),
+              ],
+            ),
           ),
         ),
       );
@@ -70,6 +79,7 @@ class _SearchSubPageState extends ConsumerState<SearchSubPage> {
           Expanded(
             child: TextField(
               controller: _searchController,
+              focusNode: _searchFocusNode,
               decoration: const InputDecoration(
                 hintText: FCommonString.search,
                 hintStyle: TextStyle(color: FCommonColor.subPrimaryWhite),

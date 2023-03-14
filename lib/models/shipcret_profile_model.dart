@@ -67,7 +67,6 @@ class FSecretProfileModel extends Equatable {
         'location': 'Republic of korea',
         'secretCount': secret,
         'uncoveredSecretCount': uncovered,
-        // 'user_tags': userTags,
       });
     }
 
