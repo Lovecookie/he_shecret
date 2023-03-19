@@ -1,4 +1,7 @@
 # schipret
+<p align="center">
+  <a href="" target="blank"><img src="https://github.com/Lovecookie/shipcret_server/blob/master/shipcret_background.png" width="400" alt="Shipcret Logo" /></a>
+</p>
 
 a secret-carrying ship
 
