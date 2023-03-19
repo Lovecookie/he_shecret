@@ -1,4 +1,4 @@
-# schipret
+## SHIPcret
 <p align="center">
   <a href="" target="blank"><img src="https://github.com/Lovecookie/shipcret/blob/master/assets/images/shipcret_background.png" width="500" alt="Shipcret Logo" /></a>
 </p>
