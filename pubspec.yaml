@@ -51,6 +51,7 @@ dependencies:
     permission_handler: ^10.2.0
     fluttertoast: ^8.2.1
     fluttericon: ^2.0.0
+    dio: ^5.1.0
 
 dev_dependencies:
     flutter_test:
