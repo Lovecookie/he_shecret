@@ -1,6 +1,6 @@
 import 'package:shipcret/common/common_ui_overlay_style.dart';
 import 'package:shipcret/material-theme/common_color.dart';
-import 'package:shipcret/provider/state_provider.dart';
+import 'package:shipcret/providers/state_provider.dart';
 import 'package:shipcret/widgets/bottom_menu/bottom_menu_bar.dart';
 import 'package:shipcret/widgets/home/home_sub_page.dart';
 import 'package:shipcret/widgets/notification/notification_sub_page.dart';

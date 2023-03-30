@@ -1,6 +1,7 @@
 import 'package:shipcret/models/secret_feed_model.dart';
 import 'package:shipcret/models/user_feed_model.dart';
-import 'package:shipcret/provider/auth_state_notifier.dart';
+import 'package:shipcret/providers/auth_state_notifier.dart';
+import 'package:shipcret/providers/repositorys/user_repository.dart';
 
 import 'dart:convert';
 import 'app_state_notifier.dart';
@@ -39,7 +40,10 @@ final feedFutureProvider = FutureProvider.autoDispose.family<List<FUserFeedModel
 /// feed view state provider
 ///
 final secretFeedFutureProvider = FutureProvider.autoDispose.family<List<FSecretFeedModel>, int>((ref, feedId) async {
-  await Future.delayed(const Duration(milliseconds: 300));
+  await Future.delayed(const Duration(milliseconds: 200));
+
+  final userRepository = ref.watch(userRepositoryProvider);
+  final responseData = await userRepository.fetchUser();
 
   Iterable iter = FSecretFeedModel.generateRandomData();
 
