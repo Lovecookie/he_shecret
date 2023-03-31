@@ -42,8 +42,8 @@ final feedFutureProvider = FutureProvider.autoDispose.family<List<FUserFeedModel
 final secretFeedFutureProvider = FutureProvider.autoDispose.family<List<FSecretFeedModel>, int>((ref, feedId) async {
   await Future.delayed(const Duration(milliseconds: 200));
 
-  final userRepository = ref.watch(userRepositoryProvider);
-  final responseData = await userRepository.fetchUser();
+  final userRepository = ref.watch(FUserRepository.provider);
+  final responseData = await userRepository.getUserInfo(BigInt.from(1));
 
   Iterable iter = FSecretFeedModel.generateRandomData();
 

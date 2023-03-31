@@ -29,11 +29,7 @@ class FFeedWidget extends ConsumerWidget {
       height: height,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          _feedNameBar(),
-          _feedContentView(),
-          _feedBottomBar(context),
-        ],
+        children: <Widget>[_feedNameBar(), _feedContentView(), _feedBottomBar(context)],
       ),
     );
   }
