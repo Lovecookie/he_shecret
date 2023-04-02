@@ -3,13 +3,13 @@ import 'package:shipcret/common/common_ui_overlay_style.dart';
 import 'package:shipcret/material-theme/common_color.dart';
 import 'package:shipcret/models/secret_feed_model.dart';
 import 'package:shipcret/providers/state_provider.dart';
+import 'package:shipcret/widgets/home/feed_widget_view.dart';
 
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:shipcret/widgets/home/feed_widget_view.dart';
 
-class HomeSubPage extends ConsumerWidget {
-  const HomeSubPage({super.key});
+class FHomeSubPage extends ConsumerWidget {
+  const FHomeSubPage({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     FCommonUIOverlayStyle.topStateBar(color: FCommonColor.godic);

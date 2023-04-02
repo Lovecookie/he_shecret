@@ -4,19 +4,21 @@ import 'package:shipcret/common/route_wrapper.dart';
 import 'package:shipcret/common/widgets/background_image_widget.dart';
 import 'package:shipcret/common/widgets/custom_snack_bar.dart';
 import 'package:shipcret/material-theme/common_color.dart';
+import 'package:shipcret/providers/auth/auth_service.dart';
 import 'package:shipcret/widgets/common/common_string.dart';
 import 'package:shipcret/widgets/common/common_widget.dart';
 
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 
-class FSignInPage extends StatefulWidget {
+class FSignInPage extends ConsumerStatefulWidget {
   const FSignInPage({super.key});
 
   @override
-  State<FSignInPage> createState() => _FSignInPageState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _FSignInPageState();
 }
 
-class _FSignInPageState extends State<FSignInPage> {
+class _FSignInPageState extends ConsumerState<FSignInPage> {
   late TextEditingController _emailController;
   late TextEditingController _passwordController;
 
@@ -24,6 +26,9 @@ class _FSignInPageState extends State<FSignInPage> {
   void initState() {
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
+
+    _emailController.text = 'smbaek@kakao.com';
+    _passwordController.text = '1234';
 
     super.initState();
   }
@@ -103,10 +108,12 @@ class _FSignInPageState extends State<FSignInPage> {
   }
 
   void _onSubmit(BuildContext context) {
-    ///
-    /// playground_page에서 보여져야 한다. playground_page에서 로그인 정보 받아오도록 수정할 예정
-    ///
-    FCustomSnackBar.floatingSnackBar(context, '환영해요! ㅇㅇㅇ님!');
+    if (_emailController.text.isEmpty || _passwordController.text.isEmpty) {
+      FCustomSnackBar.floatingSnackBar(context, '이메일과 비밀번호를 입력해주세요.');
+      return;
+    }
+
+    ref.read(authServiceProvider).setSignInInfo(email: _emailController.text, password: _passwordController.text);
 
     FAppRoute.go(context, FRouteName.playground);
   }

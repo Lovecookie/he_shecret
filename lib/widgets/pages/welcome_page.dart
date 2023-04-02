@@ -34,7 +34,6 @@ class _FWelcomePageState extends State<FWelcomePage> {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        // crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const Text(
             FCommonString.welcomeTodayTitle,

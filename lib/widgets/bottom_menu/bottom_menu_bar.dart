@@ -5,13 +5,18 @@ import 'package:shipcret/theme/app_icon.dart';
 
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:shipcret/widgets/common/widget_enum.dart';
 
-class FBottomMenuBar extends HookConsumerWidget {
-  const FBottomMenuBar({super.key});
+// ignore: must_be_immutable
+class FBottomMenuBar extends ConsumerWidget {
+  late ESubPage currentSubPage;
+
+  FBottomMenuBar({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     var appState = ref.watch(appStateProvider);
+    currentSubPage = appState.getSubPage();
 
     return SafeArea(
       child: Container(
@@ -30,31 +35,29 @@ class FBottomMenuBar extends HookConsumerWidget {
     BuildContext context,
     WidgetRef ref,
   ) {
-    int i = 0;
-
     return <Widget>[
       _makeIcon(
         context: context,
         ref: ref,
-        pageIndex: i++,
+        subPage: ESubPage.home,
         iconWidget: FAppIcon.home(),
       ),
       _makeIcon(
         context: context,
         ref: ref,
-        pageIndex: i++,
+        subPage: ESubPage.search,
         iconWidget: FAppIcon.search(),
       ),
       _makeIcon(
         context: context,
         ref: ref,
-        pageIndex: i++,
+        subPage: ESubPage.notification,
         iconWidget: FAppIcon.notification(),
       ),
       _makeIcon(
         context: context,
         ref: ref,
-        pageIndex: i++,
+        subPage: ESubPage.message,
         iconWidget: FAppIcon.message(),
       ),
     ];
@@ -63,10 +66,11 @@ class FBottomMenuBar extends HookConsumerWidget {
   Widget _makeIcon({
     required BuildContext context,
     required WidgetRef ref,
-    required int pageIndex,
+    required ESubPage subPage,
     required Widget iconWidget,
   }) {
-    final bool selected = ref.watch(appStateProvider.notifier).getPageIndex() == pageIndex;
+    // final bool selected = ref.watch(appStateProvider.notifier).getSubPage() == subPage;
+    final bool selected = currentSubPage == subPage;
 
     return Expanded(
       child: SizedBox(
@@ -85,7 +89,7 @@ class FBottomMenuBar extends HookConsumerWidget {
               alignment: const Alignment(0, 0),
               icon: iconWidget,
               onPressed: () {
-                ref.watch(appStateProvider.notifier).setPageIndex(pageIndex);
+                ref.watch(appStateProvider.notifier).setSubPage(subPage);
               },
             ),
           ),

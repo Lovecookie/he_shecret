@@ -1,38 +1,44 @@
-// ignore_for_file: prefer_final_fields, must_be_immutable
+import 'package:shipcret/widgets/common/widget_enum.dart';
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class AppState extends Equatable {
+// ignore: must_be_immutable
+class FSubPageState extends Equatable {
   late bool _isBusy;
-  late int _pageIndex;
+  late ESubPage _subPage;
 
   bool isBusy() => _isBusy;
-  int getPageIndex() => _pageIndex;
+  ESubPage getSubPage() => _subPage;
   setBusy(bool isBusy) => _isBusy = isBusy;
+  setSubPage(ESubPage subPage) => _subPage = subPage;
 
-  AppState({required isBusy, required pageIndex})
-      : _isBusy = isBusy,
-        _pageIndex = pageIndex;
+  FSubPageState({
+    bool isBusy = false,
+    ESubPage subPage = ESubPage.welcomeUser,
+  }) {
+    _isBusy = isBusy;
+    _subPage = subPage;
+  }
 
   @override
-  List<Object?> get props => [_isBusy, _pageIndex];
+  List<Object?> get props => [_isBusy, _subPage];
 
-  AppState copyWith({
+  FSubPageState copyWith({
     bool? isBusy,
-    int? pageIndex,
+    ESubPage? subPage,
   }) {
-    return AppState(
+    return FSubPageState(
       isBusy: isBusy ?? _isBusy,
-      pageIndex: pageIndex ?? _pageIndex,
+      subPage: subPage ?? _subPage,
     );
   }
 }
 
-class AppStateNotifier extends StateNotifier<AppState> {
+class AppStateNotifier extends StateNotifier<FSubPageState> {
   AppStateNotifier(super.state);
 
-  int getPageIndex() => state.getPageIndex();
+  ESubPage getSubPage() => state.getSubPage();
 
   void isBusy() {
     state = state.copyWith(isBusy: true);
@@ -42,11 +48,11 @@ class AppStateNotifier extends StateNotifier<AppState> {
     state = state.copyWith(isBusy: false);
   }
 
-  void setPageIndex(int pageIndex) {
-    if (state.getPageIndex() == pageIndex) {
+  void setSubPage(ESubPage subPage) {
+    if (state.getSubPage() == subPage) {
       return;
     }
 
-    state = state.copyWith(pageIndex: pageIndex);
+    state = state.copyWith(subPage: subPage);
   }
 }

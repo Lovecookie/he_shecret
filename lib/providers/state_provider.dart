@@ -1,7 +1,8 @@
 import 'package:shipcret/models/secret_feed_model.dart';
 import 'package:shipcret/models/user_feed_model.dart';
 import 'package:shipcret/providers/auth_state_notifier.dart';
-import 'package:shipcret/providers/repositorys/user_repository.dart';
+import 'package:shipcret/providers/users/user_repository.dart';
+import 'package:shipcret/widgets/common/widget_enum.dart';
 
 import 'dart:convert';
 import 'app_state_notifier.dart';
@@ -11,15 +12,15 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 ///
 /// app state provider
 ///
-final appStateProvider = StateNotifierProvider<AppStateNotifier, AppState>((ref) {
-  return AppStateNotifier(AppState(isBusy: false, pageIndex: 0));
+final appStateProvider = StateNotifierProvider<AppStateNotifier, FSubPageState>((ref) {
+  return AppStateNotifier(FSubPageState(isBusy: false, subPage: ESubPage.welcomeUser));
 });
 
 ///
 /// auth state provider
 ///
 final authStateProvier = StateNotifierProvider<AuthStateNotifier, AuthState>((ref) {
-  return AuthStateNotifier(AuthState(isBusy: false, pageIndex: 0));
+  return AuthStateNotifier(AuthState(isBusy: false, subPage: ESubPage.welcomeUser));
 });
 
 ///
@@ -56,18 +57,16 @@ final secretFeedFutureProvider = FutureProvider.autoDispose.family<List<FSecretF
 final pageNameProvider = Provider<String>((ref) {
   final appState = ref.watch(appStateProvider);
 
-  switch (appState.getPageIndex()) {
-    case 0:
-      {
-        return "Home";
-      }
-    case 1:
+  switch (appState.getSubPage()) {
+    case ESubPage.welcomeUser:
+      return "Welcome";
+    case ESubPage.home:
+      return "Home";
+    case ESubPage.search:
       return "Search";
-    case 2:
+    case ESubPage.notification:
       return "Notification";
-    case 3:
+    case ESubPage.message:
       return "Message";
   }
-
-  return "";
 });

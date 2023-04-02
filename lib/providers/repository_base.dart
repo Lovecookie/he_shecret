@@ -1,8 +1,9 @@
 import 'package:equatable/equatable.dart';
-import '../dio_provider.dart';
+import 'package:flutter/material.dart';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shipcret/providers/dio_provider.dart';
 
 abstract class FRepositoryBase {
   final Ref ref;
@@ -18,18 +19,52 @@ abstract class FRepositoryBase {
   })  : method = (method.endsWith('/') ? method : '$method/'),
         _getCurrentTimestamp = getCurrentTimestamp ?? (() => DateTime.now().millisecondsSinceEpoch);
 
-  FResponseData _handleError(DioError dioError) {
-    if (dioError.type == DioErrorType.badResponse) {
-      return FResponseData.fromJson(dioError.response?.data);
-    } else {
-      throw DioErrorUtil.getDioException(dioError);
+  checkResponse(FResponseData responseData) {
+    if (!responseData.isSuccess) {
+      debugPrint('❗❗❗❗❗❗❗❗❗❗❗ error: ${responseData.error} ❗❗❗❗❗❗❗❗❗❗❗');
     }
+  }
+
+  Future<Response> requestFullPath(
+    String path, {
+    required Options options,
+    Object? data,
+    Map<String, dynamic>? queryParameters,
+    CancelToken? cancelToken,
+  }) async {
+    try {
+      return ref.read(dioProvider).request(
+            path,
+            options: options,
+            queryParameters: queryParameters,
+            cancelToken: cancelToken,
+          );
+    } on DioError catch (error) {
+      throw DioErrorUtil.getDioException(error);
+    }
+  }
+
+  Future<Response> request(
+    String path, {
+    required Options options,
+    Object? data,
+    Map<String, dynamic>? queryParameters,
+    CancelToken? cancelToken,
+  }) async {
+    return await requestFullPath(
+      '/$method$path',
+      options: options,
+      data: data,
+      queryParameters: queryParameters,
+      cancelToken: cancelToken,
+    );
   }
 
   Future<FResponseData> get(
     String path, {
     Map<String, dynamic>? queryParameters,
     Object? data,
+    Options? options,
     CancelToken? cancelToken,
   }) async {
     try {
@@ -37,11 +72,12 @@ abstract class FRepositoryBase {
             '/$method$path',
             queryParameters: queryParameters,
             data: data,
+            options: options,
             cancelToken: cancelToken,
           );
       return FResponseData.fromJson(response.data);
     } on DioError catch (error) {
-      return _handleError(error);
+      throw DioErrorUtil.getDioException(error);
     }
   }
 
@@ -49,6 +85,7 @@ abstract class FRepositoryBase {
     String path, {
     Map<String, dynamic>? queryParameters,
     Object? data,
+    Options? options,
     CancelToken? cancelToken,
   }) async {
     try {
@@ -56,15 +93,12 @@ abstract class FRepositoryBase {
             '/$method$path',
             queryParameters: queryParameters,
             data: data,
+            options: options,
             cancelToken: cancelToken,
           );
       return FResponseData.fromJson(response.data);
     } on DioError catch (error) {
-      if (error.type == DioErrorType.badResponse) {
-        return FResponseData.fromJson(error.response?.data);
-      } else {
-        throw DioErrorUtil.getDioException(error);
-      }
+      throw DioErrorUtil.getDioException(error);
     }
   }
 
@@ -72,6 +106,7 @@ abstract class FRepositoryBase {
     String path, {
     Map<String, dynamic>? queryParameters,
     Object? data,
+    Options? options,
     CancelToken? cancelToken,
   }) async {
     try {
@@ -79,15 +114,12 @@ abstract class FRepositoryBase {
             '/$method$path',
             queryParameters: queryParameters,
             data: data,
+            options: options,
             cancelToken: cancelToken,
           );
       return FResponseData.fromJson(response.data);
     } on DioError catch (error) {
-      if (error.type == DioErrorType.badResponse) {
-        return FResponseData.fromJson(error.response?.data);
-      } else {
-        throw DioErrorUtil.getDioException(error);
-      }
+      throw DioErrorUtil.getDioException(error);
     }
   }
 
@@ -95,6 +127,7 @@ abstract class FRepositoryBase {
     String path, {
     Map<String, dynamic>? queryParameters,
     Object? data,
+    Options? options,
     CancelToken? cancelToken,
   }) async {
     try {
@@ -102,15 +135,12 @@ abstract class FRepositoryBase {
             '/$method$path',
             queryParameters: queryParameters,
             data: data,
+            options: options,
             cancelToken: cancelToken,
           );
       return FResponseData.fromJson(response.data);
     } on DioError catch (error) {
-      if (error.type == DioErrorType.badResponse) {
-        return FResponseData.fromJson(error.response?.data);
-      } else {
-        throw DioErrorUtil.getDioException(error);
-      }
+      throw DioErrorUtil.getDioException(error);
     }
   }
 
@@ -118,6 +148,7 @@ abstract class FRepositoryBase {
     String path, {
     Map<String, dynamic>? queryParameters,
     Object? data,
+    Options? options,
     CancelToken? cancelToken,
   }) async {
     try {
@@ -125,15 +156,12 @@ abstract class FRepositoryBase {
             '/$method$path',
             queryParameters: queryParameters,
             data: data,
+            options: options,
             cancelToken: cancelToken,
           );
       return FResponseData.fromJson(response.data);
     } on DioError catch (error) {
-      if (error.type == DioErrorType.badResponse) {
-        return FResponseData.fromJson(error.response?.data);
-      } else {
-        throw DioErrorUtil.getDioException(error);
-      }
+      throw DioErrorUtil.getDioException(error);
     }
   }
 
@@ -159,27 +187,45 @@ abstract class FRepositoryBase {
           );
       return FResponseData.fromJson(response.data);
     } on DioError catch (error) {
-      if (error.type == DioErrorType.badResponse) {
-        return FResponseData.fromJson(error.response?.data);
-      } else {
-        throw DioErrorUtil.getDioException(error);
-      }
+      throw DioErrorUtil.getDioException(error);
     }
   }
 }
 
+typedef FRequestJson = Map<String, dynamic>;
+typedef FResponseJson = Map<String, dynamic>;
+typedef FResponseJsonList = List<FResponseJson>;
+
+///
+/// FResponse dto type
+///
+abstract class FRequestDtoBase extends Equatable {
+  const FRequestDtoBase();
+
+  FRequestJson toJson();
+}
+
+abstract class FResponseDtoBase extends Equatable {
+  const FResponseDtoBase();
+
+  fromJson(FResponseJson json);
+}
+
+///
+/// FResponse data type
+///
 class FResponseData extends Equatable {
   final int statusCode;
   final bool? success;
   final String? timestamp;
-  final String? message;
+  final List<String>? message;
   final String? error;
-  final List<Map<String, dynamic>>? data;
+  final FResponseJsonList? data;
 
   const FResponseData({
     required this.statusCode,
+    required this.success,
     required this.message,
-    this.success,
     this.timestamp,
     this.error,
     this.data,
@@ -195,25 +241,38 @@ class FResponseData extends Equatable {
         data,
       ];
 
+  bool get isSuccess => statusCode == 200;
+
   factory FResponseData.fromJson(Map<String, dynamic> json) {
     List<Map<String, dynamic>>? data;
     if (json['data'] != null) {
       if (json['data'] is List) {
-        data = json['data'] as List<Map<String, dynamic>>;
+        data = json['data'] as FResponseJsonList;
       } else if (json['data'] is Map) {
-        data = [json['data'] as Map<String, dynamic>];
+        data = [json['data'] as FResponseJson];
+      }
+    }
+
+    List<String>? message;
+    if (json['message'] != null) {
+      if (json['message'] is List) {
+        message = (json['message'] as List<dynamic>?)?.map((e) => e?.toString() ?? '').toList();
+      } else {
+        message = [json['message'].cast<String>()];
       }
     }
 
     return FResponseData(
       statusCode: json['statusCode'] as int,
-      message: json['message'] as String?,
-      success: json['success'] as bool?,
+      success: json['success'] as bool,
+      message: message,
       timestamp: json['timestamp'] as String?,
       error: json['errorMessage'] as String?,
       data: data,
     );
   }
 
-  bool get isSuccess => statusCode == 200;
+  String getErrorString() {
+    return 'FResponseData{statusCode: $statusCode, success: $success, timestamp: $timestamp, message: $message, error: $error, data: $data}';
+  }
 }

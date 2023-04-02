@@ -4,7 +4,8 @@ import 'package:shipcret/providers/app_state_notifier.dart';
 import 'package:flutter/material.dart';
 
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'dart:ffi';
+
+import 'package:shipcret/widgets/common/widget_enum.dart';
 
 class AuthStateNotifier extends StateNotifier<AuthState> {
   AuthStateNotifier(super.state);
@@ -15,12 +16,18 @@ class AuthStateNotifier extends StateNotifier<AuthState> {
 }
 
 // ignore: must_be_immutable
-class AuthState extends AppState {
+class AuthState extends FSubPageState {
   EAuthStatusType authStatusType = EAuthStatusType.notDetermined;
-  late Int64 userId;
   FUserModel? _userModel;
 
-  AuthState({required super.isBusy, required super.pageIndex});
+  AuthState({
+    bool isBusy = false,
+    ESubPage subPage = ESubPage.welcomeUser,
+    EAuthStatusType authStatusType = EAuthStatusType.notDetermined,
+    FUserModel? userModel,
+  }) : super(isBusy: isBusy, subPage: subPage) {
+    _userModel = userModel;
+  }
 
   FUserModel? get userModel => _userModel;
   FUserModel? get profileUserModel => _userModel;
@@ -30,11 +37,4 @@ class AuthState extends AppState {
 
     return "";
   }
-  // Future<String?> signIn(String email, String password, {required BuildContext context}) async {
-  //   try {
-  //     setBusy(true);
-  //   } catch {
-  //   }
-  //   return null;
-  // }
 }

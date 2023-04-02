@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class SearchSubPage extends ConsumerStatefulWidget {
-  const SearchSubPage({super.key});
+class FSearchSubPage extends ConsumerStatefulWidget {
+  const FSearchSubPage({super.key});
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _SearchSubPageState();
 }
 
-class _SearchSubPageState extends ConsumerState<SearchSubPage> {
+class _SearchSubPageState extends ConsumerState<FSearchSubPage> {
   late TextEditingController _searchController;
   final FocusNode _searchFocusNode = FocusNode();
 
