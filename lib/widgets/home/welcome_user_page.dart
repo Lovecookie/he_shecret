@@ -46,7 +46,7 @@ class _FWelcomeUserPageState extends ConsumerState<FWelcomeUserPage> {
           return _body(context, state: EWelcomePageState.loading);
         }
 
-        final userInfoDto = optional.value!;
+        final userInfoDto = optional.value;
 
         ref.read(authServiceProvider).onLoginSuccess(
               name: userInfoDto.name,
