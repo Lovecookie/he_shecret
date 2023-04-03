@@ -1,4 +1,4 @@
-import 'package:shipcret/providers/repository_base.dart';
+import 'package:shipcret/providers/response_data.dart';
 
 class FSignUpDto extends FRequestDtoBase {
   final String name;

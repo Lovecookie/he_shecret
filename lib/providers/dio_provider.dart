@@ -1,10 +1,12 @@
+import 'package:shipcret/common/route_wrapper.dart';
+import 'package:shipcret/providers/auth/auth_repository.dart';
+import 'package:shipcret/providers/dtos/token_dto.dart';
+import 'package:shipcret/providers/response_data.dart';
+
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:shipcret/providers/auth/auth_repository.dart';
-import 'package:shipcret/providers/dtos/token_dto.dart';
-import 'package:shipcret/providers/repository_base.dart';
 
 final shipcretUrl = dotenv.env['SHIPCRET_API_URL'] ?? 'http://10.0.2.2:8000';
 
@@ -102,6 +104,8 @@ class TokenInterceptor extends Interceptor {
       } catch (e) {
         await _storage.delete(key: 'AT');
         await _storage.delete(key: 'RT');
+
+        FAppRoute.forceGo(FRouteName.welcome);
       }
 
       final retryFailedRequest = await ref.read(FAuthRepository.provider).request(
@@ -150,6 +154,30 @@ class DioException implements Exception {
 /*
  * Dio Error Util
  */
+// class DioErrorUtil {
+//   static DioException getDioException(DioError dioError) {
+//     switch (dioError.type) {
+//       case DioErrorType.connectionTimeout:
+//         return DioException(message: 'Connection timeout');
+//       case DioErrorType.sendTimeout:
+//         return DioException(message: 'Send timeout');
+//       case DioErrorType.receiveTimeout:
+//         return DioException(message: 'Receive timeout');
+//       case DioErrorType.badCertificate:
+//         return DioException(message: 'Bad certificate');
+//       case DioErrorType.badResponse:
+//         return DioException(message: 'Bad response', responseData: FResponseData.fromJson(dioError.response?.data));
+//       case DioErrorType.cancel:
+//         return DioException(message: 'Request cancelled');
+//       case DioErrorType.connectionError:
+//         return DioException(message: 'Connection error');
+//       case DioErrorType.unknown:
+//     }
+
+//     return DioException(message: 'Unknown error');
+//   }
+// }
+
 class DioErrorUtil {
   static DioException getDioException(DioError dioError) {
     switch (dioError.type) {
@@ -171,5 +199,26 @@ class DioErrorUtil {
     }
 
     return DioException(message: 'Unknown error');
+  }
+
+  static FResponseData convertError(DioError dioError) {
+    switch (dioError.type) {
+      case DioErrorType.connectionTimeout:
+        return FResponseData.fromError('Connection timeout', json: dioError.response?.data);
+      case DioErrorType.sendTimeout:
+        return FResponseData.fromError('Send timeout', json: dioError.response?.data);
+      case DioErrorType.receiveTimeout:
+        return FResponseData.fromError('Receive timeout', json: dioError.response?.data);
+      case DioErrorType.badCertificate:
+        return FResponseData.fromError('Bad certificate', json: dioError.response?.data);
+      case DioErrorType.badResponse:
+        return FResponseData.fromJson(dioError.response?.data);
+      case DioErrorType.cancel:
+        return FResponseData.fromError('Request cancelled', json: dioError.response?.data);
+      case DioErrorType.connectionError:
+        return FResponseData.fromError('Connection error', json: dioError.response?.data);
+      case DioErrorType.unknown:
+        return FResponseData.fromError('unknown', json: dioError.response?.data);
+    }
   }
 }

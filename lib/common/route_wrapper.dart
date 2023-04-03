@@ -34,6 +34,10 @@ class FAppRoute {
   static void pop(BuildContext context) {
     context.pop();
   }
+
+  static void forceGo(String routeName) {
+    FRouteWrapper.router.go(routeName);
+  }
 }
 
 ///

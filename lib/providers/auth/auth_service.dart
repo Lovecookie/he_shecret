@@ -16,8 +16,9 @@ final authSignInProvider = FutureProvider.autoDispose<utils.FOptional<FSignUserI
   }
 
   final signInDto = ref.read(authServiceProvider).getSignInDto();
+  final userInfoDto = await ref.read(FAuthRepository.provider).signIn(signInDto);
 
-  return utils.FOptional(await ref.read(FAuthRepository.provider).signIn(signInDto));
+  return utils.FOptional(userInfoDto);
 });
 
 final authSignUpProvider = FutureProvider.autoDispose<FSignUserInfoDto>((ref) async {

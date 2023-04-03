@@ -1,5 +1,4 @@
-
-import 'package:shipcret/providers/repository_base.dart';
+import 'package:shipcret/providers/response_data.dart';
 
 class FTokenDto extends FResponseDtoBase {
   final String accessToken;
