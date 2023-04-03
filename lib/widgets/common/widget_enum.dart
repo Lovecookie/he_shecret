@@ -5,3 +5,9 @@ enum ESubPage {
   notification,
   message,
 }
+
+enum EWelcomePageState {
+  loading,
+  error,
+  data,
+}

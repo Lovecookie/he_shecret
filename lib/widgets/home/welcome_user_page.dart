@@ -1,17 +1,15 @@
+import 'dart:async';
+
 import 'package:shipcret/common/common_font.dart';
 import 'package:shipcret/common/common_ui_overlay_style.dart';
 import 'package:shipcret/material-theme/common_color.dart';
 import 'package:shipcret/providers/auth/auth_service.dart';
+import 'package:shipcret/providers/state_provider.dart';
+import 'package:shipcret/widgets/common/common_string.dart';
+import 'package:shipcret/widgets/common/widget_enum.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shipcret/widgets/common/common_string.dart';
-
-enum EWelcomePageState {
-  loading,
-  error,
-  data,
-}
 
 class FWelcomeUserPage extends ConsumerStatefulWidget {
   const FWelcomeUserPage({super.key});
@@ -21,6 +19,17 @@ class FWelcomeUserPage extends ConsumerStatefulWidget {
 }
 
 class _FWelcomeUserPageState extends ConsumerState<FWelcomeUserPage> {
+  late Timer _timer;
+
+  @override
+  void dispose() {
+    if (_timer.isActive) {
+      _timer.cancel();
+    }
+
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     FCommonUIOverlayStyle.topStateBar(color: FCommonColor.godic);
@@ -31,15 +40,32 @@ class _FWelcomeUserPageState extends ConsumerState<FWelcomeUserPage> {
       error: (err, stack) {
         return _body(context, state: EWelcomePageState.error, text: "Error...");
       },
-      data: (userInfoDto) {
-        ref.read(authServiceProvider).loginSuccess(
+      data: (optional) {
+        if (!optional.hasValue) {
+          reservationNextPage(nextSeconds: 1);
+          return _body(context, state: EWelcomePageState.loading);
+        }
+
+        final userInfoDto = optional.value!;
+
+        ref.read(authServiceProvider).onLoginSuccess(
               name: userInfoDto.name,
               email: userInfoDto.email,
             );
 
+        reservationNextPage();
+
         return _body(context, state: EWelcomePageState.data, text: userInfoDto.name);
       },
     );
+  }
+
+  void reservationNextPage({int nextSeconds = 3}) {
+    _timer = Timer.periodic(Duration(seconds: nextSeconds), (timer) {
+      if (mounted) {
+        ref.read(appStateProvider.notifier).setSubPage(ESubPage.home);
+      }
+    });
   }
 
   Widget _body(

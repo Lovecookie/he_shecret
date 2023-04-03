@@ -27,7 +27,6 @@ class FAuthRepository extends FRepositoryBase {
   }
 
   Future<FSignUserInfoDto> signUp(FSignUpDto signupDto) async {
-    // final responseData = await post('/signup', data: {'name': name, 'email': email, 'password': password });
     final responseData = await post('/signup', data: signupDto.toJson());
     if (!responseData.isSuccess) {
       return const FSignUserInfoDto();

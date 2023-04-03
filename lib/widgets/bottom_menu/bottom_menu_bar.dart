@@ -89,7 +89,7 @@ class FBottomMenuBar extends ConsumerWidget {
               alignment: const Alignment(0, 0),
               icon: iconWidget,
               onPressed: () {
-                ref.watch(appStateProvider.notifier).setSubPage(subPage);
+                ref.read(appStateProvider.notifier).setSubPage(subPage);
               },
             ),
           ),
