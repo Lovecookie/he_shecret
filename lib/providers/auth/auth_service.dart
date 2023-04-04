@@ -1,6 +1,5 @@
 import 'package:shipcret/common/utils/util.dart' as utils;
 import 'package:shipcret/providers/auth/auth_repository.dart';
-import 'package:shipcret/providers/dtos/sign-user-info.dto.dart';
 import 'package:shipcret/providers/dtos/signin.dto.dart';
 import 'package:shipcret/providers/dtos/signup.dto.dart';
 
@@ -10,18 +9,17 @@ final authServiceProvider = Provider<FAuthService>((ref) {
   return FAuthService(ref);
 });
 
-final authSignInProvider = FutureProvider.autoDispose<utils.FOptional<FSignUserInfoDto>>((ref) async {
+final authSignInProvider = FutureProvider.autoDispose<utils.FOptional>((ref) async {
   if (ref.read(authServiceProvider).isSignIn) {
     return utils.FNullOpt();
   }
 
   final signInDto = ref.read(authServiceProvider).getSignInDto();
-  final userInfoDto = await ref.read(FAuthRepository.provider).signIn(signInDto);
 
-  return utils.FOptional(userInfoDto);
+  return await ref.read(FAuthRepository.provider).signIn(signInDto);
 });
 
-final authSignUpProvider = FutureProvider.autoDispose<FSignUserInfoDto>((ref) async {
+final authSignUpProvider = FutureProvider.autoDispose<utils.FOptional>((ref) async {
   final signUpDto = ref.read(authServiceProvider).getSignUpDto();
 
   return await ref.read(FAuthRepository.provider).signUp(signUpDto);

@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:shipcret/common/utils/util.dart' as util;
 import 'package:shipcret/providers/dtos/token_dto.dart';
 import 'package:shipcret/providers/dio_provider.dart';
 import 'package:shipcret/providers/dtos/sign-user-info.dto.dart';
@@ -17,48 +18,48 @@ class FAuthRepository extends FRepositoryBase {
     return FAuthRepository(ref);
   });
 
-  Future<FTokenDto> login(String email, String password) async {
+  util.FFutureOptional<FTokenDto> login(String email, String password) async {
     final responseData = await post('/login', data: {'email': email, 'password': password});
     if (!responseData.isSuccess) {
-      return const FTokenDto();
+      return util.FNullOpt();
     } else {
-      return FTokenDto.fromJson(responseData.data!.first);
+      return util.FOptional(FTokenDto.fromJson(responseData.data!.first));
     }
   }
 
-  Future<FSignUserInfoDto> signUp(FSignUpDto signupDto) async {
+  util.FFutureOptional<FSignUserInfoDto> signUp(FSignUpDto signupDto) async {
     final responseData = await post('/signup', data: signupDto.toJson());
     if (!responseData.isSuccess) {
-      return const FSignUserInfoDto();
+      return util.FNullOpt();
     } else {
-      return FSignUserInfoDto.fromJson(responseData.data!.first);
+      return util.FOptional(FSignUserInfoDto.fromJson(responseData.data!.first));
     }
   }
 
-  Future<FSignUserInfoDto> signIn(FSignInDto signinDto) async {
+  util.FFutureOptional<FSignUserInfoDto> signIn(FSignInDto signinDto) async {
     final responseData = await post('/signin', data: signinDto.toJson());
     if (!responseData.isSuccess) {
-      return const FSignUserInfoDto();
+      return util.FNullOpt();
     } else {
-      return FSignUserInfoDto.fromJson(responseData.data!.first);
+      return util.FOptional(FSignUserInfoDto.fromJson(responseData.data!.first));
     }
   }
 
-  Future<FTokenDto> logout({required String email, required String password}) async {
+  util.FFutureOptional<FTokenDto> logout({required String email, required String password}) async {
     final responseData = await post('/signin', data: {'email': email, 'password': password});
     if (!responseData.isSuccess) {
-      return const FTokenDto();
+      return util.FNullOpt();
     } else {
-      return FTokenDto.fromJson(responseData.data!.first);
+      return util.FOptional(FTokenDto.fromJson(responseData.data!.first));
     }
   }
 
-  Future<FTokenDto> refreshToken({required Options options}) async {
+  util.FFutureOptional<FTokenDto> refreshToken({required Options options}) async {
     final responseData = await post('/refresh-token', options: options);
     if (!responseData.isSuccess) {
-      return const FTokenDto();
+      return util.FNullOpt();
     } else {
-      return FTokenDto.fromJson(responseData.data!.first);
+      return util.FOptional(FTokenDto.fromJson(responseData.data!.first));
     }
   }
 }

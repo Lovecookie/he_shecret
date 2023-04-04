@@ -1,4 +1,4 @@
-part of utils;
+part of util;
 
 class FOptional<T> {
   final T? _value;
@@ -25,3 +25,5 @@ class FOptional<T> {
 class FNullOpt<T> extends FOptional<T> {
   FNullOpt() : super(null);
 }
+
+typedef FFutureOptional<T> = Future<FOptional<T>>;

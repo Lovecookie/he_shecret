@@ -92,21 +92,21 @@ class TokenInterceptor extends Interceptor {
       // final at = await _storage.read(key: 'AT');
       final rt = await _storage.read(key: 'RT');
 
-      try {
-        final responseData = await ref.read(FAuthRepository.provider).refreshToken(
-              options: Options(
-                headers: {'Authorization': 'Bearer $rt'},
-              ),
-            );
+      final opt = await ref
+          .read(FAuthRepository.provider)
+          .refreshToken(options: Options(headers: {'Authorization': 'Bearer $rt'}));
 
-        await _storage.write(key: 'AT', value: responseData.accessToken);
-        await _storage.write(key: 'RT', value: responseData.refreshToken);
-      } catch (e) {
+      if (!opt.hasValue) {
         await _storage.delete(key: 'AT');
         await _storage.delete(key: 'RT');
 
         FAppRoute.forceGo(FRouteName.welcome);
+
+        return handler.next(err);
       }
+
+      await _storage.write(key: 'AT', value: opt.value.accessToken);
+      await _storage.write(key: 'RT', value: opt.value.refreshToken);
 
       final retryFailedRequest = await ref.read(FAuthRepository.provider).request(
             err.requestOptions.path,
