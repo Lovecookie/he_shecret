@@ -1,3 +1,4 @@
+import 'package:shipcret/common/common_enum.dart';
 import 'package:shipcret/common/utils/util.dart' as utils;
 import 'package:shipcret/providers/auth/auth_repository.dart';
 import 'package:shipcret/providers/dtos/signin.dto.dart';
@@ -9,25 +10,26 @@ final authServiceProvider = Provider<FAuthService>((ref) {
   return FAuthService(ref);
 });
 
-final authSignInProvider = FutureProvider.autoDispose<utils.FOptional>((ref) async {
-  if (ref.read(authServiceProvider).isSignIn) {
-    return utils.FNullOpt();
+final authWelcomeProvider = FutureProvider.autoDispose<utils.FOptional>((ref) async {
+  final welcomeType = ref.read(authServiceProvider).welcomeType;
+
+  switch (welcomeType) {
+    case EWelcomeType.signin:
+      final signInDto = ref.read(authServiceProvider).getSignInDto();
+      return await ref.read(authRepository).signIn(signInDto);
+    case EWelcomeType.signup:
+      final signUpDto = ref.read(authServiceProvider).getSignUpDto();
+      return await ref.read(authRepository).signUp(signUpDto);
+    default:
+      return utils.FNullOpt();
   }
-
-  final signInDto = ref.read(authServiceProvider).getSignInDto();
-
-  return await ref.read(FAuthRepository.provider).signIn(signInDto);
-});
-
-final authSignUpProvider = FutureProvider.autoDispose<utils.FOptional>((ref) async {
-  final signUpDto = ref.read(authServiceProvider).getSignUpDto();
-
-  return await ref.read(FAuthRepository.provider).signUp(signUpDto);
 });
 
 class FAuthService {
   final Ref ref;
   bool _isSignIn = false;
+  EWelcomeType _welcomeType = EWelcomeType.none;
+
   late String _name;
   late String _email;
   late String _password;
@@ -35,6 +37,7 @@ class FAuthService {
   FAuthService(this.ref);
 
   bool get isSignIn => _isSignIn;
+  EWelcomeType get welcomeType => _welcomeType;
 
   onLoginSuccess({required String name, required String email}) {
     _isSignIn = true;
@@ -51,12 +54,14 @@ class FAuthService {
   }
 
   setSignUpInfo({required String name, required String email, required String password}) {
+    _welcomeType = EWelcomeType.signup;
     _name = name;
     _email = email;
     _password = password;
   }
 
   setSignInInfo({required String email, required String password}) {
+    _welcomeType = EWelcomeType.signin;
     _email = email;
     _password = password;
   }

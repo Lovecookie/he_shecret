@@ -33,7 +33,7 @@ class _FWelcomeUserPageState extends ConsumerState<FWelcomeUserPage> {
   @override
   Widget build(BuildContext context) {
     FCommonUIOverlayStyle.topStateBar(color: FCommonColor.godic);
-    return ref.watch(authSignInProvider).when(
+    return ref.watch(authWelcomeProvider).when(
       loading: () {
         return _body(context, state: EWelcomePageState.loading);
       },
@@ -119,7 +119,7 @@ class _FWelcomeUserPageState extends ConsumerState<FWelcomeUserPage> {
         );
       case EWelcomePageState.data:
         return Text(
-          FCommonString.welcome(text),
+          FCommonString.randomWelcome(text),
           style: const TextStyle(
             color: FCommonColor.subPrimaryWhite,
             fontSize: 30,

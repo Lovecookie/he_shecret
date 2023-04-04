@@ -1,29 +1,27 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shipcret/common/common_assets.dart';
 import 'package:shipcret/common/route_wrapper.dart';
 import 'package:shipcret/common/widgets/background_image_widget.dart';
 import 'package:shipcret/common/widgets/custom_snack_bar.dart';
 import 'package:shipcret/material-theme/common_color.dart';
+import 'package:shipcret/providers/auth/auth_service.dart';
 import 'package:shipcret/widgets/common/common_string.dart';
 import 'package:shipcret/widgets/common/common_widget.dart';
 
 import 'package:flutter/material.dart';
 
-class FSignUpPage extends StatefulWidget {
-  const FSignUpPage({
-    super.key,
-  });
+class FSignUpPage extends ConsumerStatefulWidget {
+  const FSignUpPage({super.key});
 
   @override
-  State<FSignUpPage> createState() => _FSignUpPageState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _FSignUpPageState();
 }
 
-class _FSignUpPageState extends State<FSignUpPage> {
+class _FSignUpPageState extends ConsumerState<FSignUpPage> {
   late TextEditingController _nameController;
   late TextEditingController _emailController;
   late TextEditingController _passwordController;
   late TextEditingController _confirmController;
-
-  final _fromGlobalKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -106,21 +104,31 @@ class _FSignUpPageState extends State<FSignUpPage> {
   }
 
   void _submitForm(BuildContext context) {
-    if (_emailController.text.isEmpty) {
+    if (_nameController.text.isEmpty) {
       FCustomSnackBar.fixedSnackBar(context, FCommonString.signUpPleaseEnterName);
+      return;
+    }
+    if (_emailController.text.isEmpty) {
+      FCustomSnackBar.fixedSnackBar(context, FCommonString.signUpPleaseEnterEmail);
       return;
     }
     if (_emailController.text.length > 27) {
       FCustomSnackBar.fixedSnackBar(context, FCommonString.signUpNameLengthCannotExceed27Character);
       return;
     }
-    if (_emailController.text.isEmpty || _passwordController.text.isEmpty) {
+    if (_passwordController.text.isEmpty) {
       FCustomSnackBar.fixedSnackBar(context, FCommonString.signUpPleaseFillFormCarefully);
       return;
     } else if (_passwordController.text != _confirmController.text) {
       FCustomSnackBar.fixedSnackBar(context, FCommonString.signUpPasswordAndConfirmPasswordDidNotMatch);
       return;
     }
+
+    ref.read(authServiceProvider).setSignUpInfo(
+          name: _nameController.text,
+          email: _emailController.text,
+          password: _passwordController.text,
+        );
 
     FAppRoute.go(context, FRouteName.playground);
   }

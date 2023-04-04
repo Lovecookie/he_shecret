@@ -6,7 +6,7 @@ import 'package:shipcret/providers/state_provider.dart';
 import 'package:shipcret/widgets/home/feed_widget_view.dart';
 
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class FHomeSubPage extends ConsumerWidget {
   const FHomeSubPage({super.key});

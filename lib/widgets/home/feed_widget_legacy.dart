@@ -2,11 +2,11 @@ import 'package:shipcret/common/common_font.dart';
 import 'package:shipcret/common/widgets/custom_snack_bar.dart';
 import 'package:shipcret/models/user_feed_model.dart';
 import 'package:shipcret/widgets/common/common_string.dart';
+import 'package:shipcret/widgets/common/icon_button.dart';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:shipcret/widgets/common/icon_button.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // ignore: must_be_immutable
 class FFeedWidget extends ConsumerWidget {

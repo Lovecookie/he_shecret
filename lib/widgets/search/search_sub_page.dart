@@ -1,9 +1,9 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shipcret/material-theme/common_color.dart';
 import 'package:shipcret/widgets/common/common_string.dart';
 
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class FSearchSubPage extends ConsumerStatefulWidget {
   const FSearchSubPage({super.key});

@@ -1,10 +1,10 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shipcret/common/common_const.dart';
 import 'package:shipcret/material-theme/common_color.dart';
 import 'package:shipcret/providers/state_provider.dart';
 import 'package:shipcret/theme/app_icon.dart';
 
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shipcret/widgets/common/widget_enum.dart';
 
 // ignore: must_be_immutable

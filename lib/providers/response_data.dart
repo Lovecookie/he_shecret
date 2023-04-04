@@ -7,8 +7,8 @@ typedef FResponseJsonList = List<FResponseJson>;
 ///
 /// FResponse dto type
 ///
-abstract class FRequestDtoBase extends Equatable {
-  const FRequestDtoBase();
+abstract class FDtoBase extends Equatable {
+  const FDtoBase();
 
   FRequestJson toJson();
 }
@@ -66,7 +66,7 @@ class FResponseData extends Equatable {
       if (json['message'] is List) {
         message = (json['message'] as List<dynamic>?)?.map((e) => e?.toString() ?? '').toList();
       } else {
-        message = [json['message'].cast<String>()];
+        message = [json['message'] as String];
       }
     }
 

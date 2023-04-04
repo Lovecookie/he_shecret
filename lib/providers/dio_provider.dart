@@ -92,9 +92,8 @@ class TokenInterceptor extends Interceptor {
       // final at = await _storage.read(key: 'AT');
       final rt = await _storage.read(key: 'RT');
 
-      final opt = await ref
-          .read(FAuthRepository.provider)
-          .refreshToken(options: Options(headers: {'Authorization': 'Bearer $rt'}));
+      final opt =
+          await ref.read(authRepository).refreshToken(options: Options(headers: {'Authorization': 'Bearer $rt'}));
 
       if (!opt.hasValue) {
         await _storage.delete(key: 'AT');
@@ -108,7 +107,7 @@ class TokenInterceptor extends Interceptor {
       await _storage.write(key: 'AT', value: opt.value.accessToken);
       await _storage.write(key: 'RT', value: opt.value.refreshToken);
 
-      final retryFailedRequest = await ref.read(FAuthRepository.provider).request(
+      final retryFailedRequest = await ref.read(authRepository).request(
             err.requestOptions.path,
             options: Options(method: err.requestOptions.method, headers: err.requestOptions.headers),
             data: err.requestOptions.data,
@@ -154,29 +153,6 @@ class DioException implements Exception {
 /*
  * Dio Error Util
  */
-// class DioErrorUtil {
-//   static DioException getDioException(DioError dioError) {
-//     switch (dioError.type) {
-//       case DioErrorType.connectionTimeout:
-//         return DioException(message: 'Connection timeout');
-//       case DioErrorType.sendTimeout:
-//         return DioException(message: 'Send timeout');
-//       case DioErrorType.receiveTimeout:
-//         return DioException(message: 'Receive timeout');
-//       case DioErrorType.badCertificate:
-//         return DioException(message: 'Bad certificate');
-//       case DioErrorType.badResponse:
-//         return DioException(message: 'Bad response', responseData: FResponseData.fromJson(dioError.response?.data));
-//       case DioErrorType.cancel:
-//         return DioException(message: 'Request cancelled');
-//       case DioErrorType.connectionError:
-//         return DioException(message: 'Connection error');
-//       case DioErrorType.unknown:
-//     }
-
-//     return DioException(message: 'Unknown error');
-//   }
-// }
 
 class DioErrorUtil {
   static DioException getDioException(DioError dioError) {

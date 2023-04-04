@@ -9,14 +9,14 @@ import 'package:shipcret/providers/repository_base.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+final authRepository = Provider<FAuthRepository>((ref) {
+  return FAuthRepository(ref);
+});
+
 class FAuthRepository extends FRepositoryBase {
   // late FAuthTokenEntity _authTokenEntity;
 
   FAuthRepository(Ref ref) : super(ref, authDioProvider, 'auth');
-
-  static final provider = Provider<FAuthRepository>((ref) {
-    return FAuthRepository(ref);
-  });
 
   util.FFutureOptional<FTokenDto> login(String email, String password) async {
     final responseData = await post('/login', data: {'email': email, 'password': password});

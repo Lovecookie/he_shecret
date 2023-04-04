@@ -3,6 +3,12 @@ enum ERouteMainCategory {
   home,
 }
 
+enum EWelcomeType {
+  none,
+  signin,
+  signup,
+}
+
 enum EAuthStatusType {
   notDetermined, //  NOT_DETERMINED,
   notLoggedIn, // NOT_LOGGED_IN,

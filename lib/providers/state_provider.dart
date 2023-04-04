@@ -1,3 +1,4 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shipcret/models/secret_feed_model.dart';
 import 'package:shipcret/models/user_feed_model.dart';
 import 'package:shipcret/providers/auth_state_notifier.dart';
@@ -7,7 +8,6 @@ import 'package:shipcret/widgets/common/widget_enum.dart';
 import 'dart:convert';
 import 'app_state_notifier.dart';
 import 'package:flutter/services.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 ///
 /// app state provider
