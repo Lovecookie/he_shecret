@@ -1,10 +1,11 @@
+
 import 'package:shipcret/providers/response_data.dart';
 
-class FSignInDto extends FRequestDtoBase {
+class FSignInRequestDto extends FRequestDtoBase {
   final String email;
   final String password;
 
-  const FSignInDto({required this.email, required this.password});
+  const FSignInRequestDto({required this.email, required this.password});
 
   @override
   List<Object?> get props => [email, password];

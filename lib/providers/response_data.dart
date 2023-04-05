@@ -14,8 +14,35 @@ abstract class FRequestDtoBase extends Equatable {
   FRequestJson toJson();
 }
 
-abstract class FResponseDtoBase extends Equatable {
-  const FResponseDtoBase();
+abstract class FResponseDto extends Equatable {
+  const FResponseDto();
+
+  FResponseJson toJson();
+
+  static FResponseDto fromJson(FResponseJson json) {
+    throw UnimplementedError('Subclass should @override this method');
+  }
+
+  static FResOptional<List<T>> tryToDtoList<T extends FResponseDto>(FResponseJsonList? responseJsonList) {
+    List<T> results = [];
+    if (responseJsonList == null || responseJsonList.isEmpty) {
+      return FNullResOpt.parseJsonError();
+    }
+
+    for (var json in responseJsonList) {
+      results.add(FResponseDto.fromJson(json) as T);
+    }
+
+    return FResOptional(results);
+  }
+
+  static FResOptional<T> tryToDto<T extends FResponseDto>(FResponseJson? responseJson) {
+    if (responseJson == null) {
+      return FNullResOpt.parseJsonError();
+    }
+
+    return FResOptional(FResponseDto.fromJson(responseJson) as T);
+  }
 }
 
 ///

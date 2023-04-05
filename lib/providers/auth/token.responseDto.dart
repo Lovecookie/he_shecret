@@ -1,10 +1,10 @@
 import 'package:shipcret/providers/response_data.dart';
 
-class FTokenDto extends FResponseDtoBase {
+class FTokenResponseDto extends FResponseDto {
   final String accessToken;
   final String refreshToken;
 
-  const FTokenDto({
+  const FTokenResponseDto({
     this.accessToken = '',
     this.refreshToken = '',
   });
@@ -13,12 +13,15 @@ class FTokenDto extends FResponseDtoBase {
   List<Object?> get props => [accessToken, refreshToken];
 
   @override
-  fromJson(FResponseJson json) {
-    return FTokenDto.fromJson(json);
+  FResponseJson toJson() {
+    return {
+      'accessToken': accessToken,
+      'refreshToken': refreshToken,
+    };
   }
 
-  factory FTokenDto.fromJson(FResponseJson json) {
-    return FTokenDto(
+  static FTokenResponseDto fromJson(FResponseJson json) {
+    return FTokenResponseDto(
       accessToken: json['accessToken'],
       refreshToken: json['refreshToken'],
     );

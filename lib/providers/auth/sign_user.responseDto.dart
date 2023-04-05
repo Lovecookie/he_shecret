@@ -1,11 +1,10 @@
-
 import 'package:shipcret/providers/response_data.dart';
 
-class FSignUserInfoDto extends FResponseDtoBase {
+class FSignUserResponseDto extends FResponseDto {
   final String name;
   final String email;
 
-  const FSignUserInfoDto({
+  const FSignUserResponseDto({
     this.name = '',
     this.email = '',
   });
@@ -17,12 +16,15 @@ class FSignUserInfoDto extends FResponseDtoBase {
       ];
 
   @override
-  FSignUserInfoDto fromJson(FResponseJson json) {
-    return FSignUserInfoDto.fromJson(json);
+  FResponseJson toJson() {
+    return {
+      'name': name,
+      'email': email,
+    };
   }
 
-  factory FSignUserInfoDto.fromJson(FResponseJson json) {
-    return FSignUserInfoDto(
+  factory FSignUserResponseDto.fromJson(FResponseJson json) {
+    return FSignUserResponseDto(
       name: json['name'],
       email: json['email'],
     );

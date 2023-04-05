@@ -1,6 +1,6 @@
 import 'package:shipcret/providers/response_data.dart';
 
-class FSignUpDto extends FRequestDtoBase {
+class FSignUpRequestDto extends FRequestDtoBase {
   final String name;
   final String email;
   final String password;
@@ -9,7 +9,7 @@ class FSignUpDto extends FRequestDtoBase {
   // final String phoneNumber;
   // final String? referralCode;
 
-  const FSignUpDto({
+  const FSignUpRequestDto({
     required this.name,
     required this.email,
     required this.password,

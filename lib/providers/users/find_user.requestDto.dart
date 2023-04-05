@@ -2,17 +2,17 @@ import 'dart:ffi';
 
 import 'package:shipcret/providers/response_data.dart';
 
-class FFindUserDto extends FRequestDtoBase {
+class FFindUserRequestDto extends FRequestDtoBase {
   final Int64 useruuid;
 
-  const FFindUserDto({
+  const FFindUserRequestDto({
     required this.useruuid,
   });
 
   @override
   List<Object?> get props => [useruuid];
 
-  factory FFindUserDto.fromJson(Map<String, dynamic> json) => FFindUserDto(
+  factory FFindUserRequestDto.fromJson(Map<String, dynamic> json) => FFindUserRequestDto(
         useruuid: json["useruuid"],
       );
 

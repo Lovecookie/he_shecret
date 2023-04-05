@@ -2,7 +2,9 @@ part of util;
 
 class FResultCode {
   static const int success = 0;
-  static const int unknownError = -1;
+  static const int unknownError = 1;
+  static const int parseJsonError = 2;
+
   static const int connectionTimeOut = 10;
   static const int sendTimeOut = 11;
   static const int receiveTimeOut = 12;

@@ -33,10 +33,13 @@ class FResponseOptional<T> {
 }
 
 class FNullResponseOptional<T> extends FResOptional<T> {
-  FNullResponseOptional(FResponseData? responseData)
-      : super(null, resultCode: responseData?.resultCode ?? FResultCode.unknownError);
+  FNullResponseOptional(int resultCode) : super(null, resultCode: resultCode);
 
   factory FNullResponseOptional.unknownError() {
-    return FNullResponseOptional(null);
+    return FNullResponseOptional(FResultCode.unknownError);
+  }
+
+  factory FNullResponseOptional.parseJsonError() {
+    return FNullResponseOptional(FResultCode.parseJsonError);
   }
 }

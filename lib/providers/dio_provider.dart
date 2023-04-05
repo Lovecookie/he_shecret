@@ -1,7 +1,7 @@
 import 'package:shipcret/common/route_wrapper.dart';
 import 'package:shipcret/common/utils/util.dart';
 import 'package:shipcret/providers/auth/auth_repository.dart';
-import 'package:shipcret/providers/auth/token_dto.dart';
+import 'package:shipcret/providers/auth/token.responseDto.dart';
 import 'package:shipcret/providers/response_data.dart';
 
 import 'package:dio/dio.dart';
@@ -52,7 +52,7 @@ class AuthInterceptor extends Interceptor {
       if (response.data['data'] != null) {
         final token = response.data['data']['token'];
         if (token != null) {
-          final FTokenDto tokenDto = FTokenDto.fromJson(token);
+          final FTokenResponseDto tokenDto = FTokenResponseDto.fromJson(token);
           _storage.write(key: 'AT', value: tokenDto.accessToken);
           _storage.write(key: 'RT', value: tokenDto.refreshToken);
         }

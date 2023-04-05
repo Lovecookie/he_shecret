@@ -1,8 +1,8 @@
 import 'package:shipcret/common/common_enum.dart';
 import 'package:shipcret/common/utils/util.dart' as utils;
 import 'package:shipcret/providers/auth/auth_repository.dart';
-import 'package:shipcret/providers/auth/signin.dto.dart';
-import 'package:shipcret/providers/auth/signup.dto.dart';
+import 'package:shipcret/providers/auth/signin.requestDto.dart';
+import 'package:shipcret/providers/auth/signup.requestDto.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -66,11 +66,11 @@ class FAuthService {
     _password = password;
   }
 
-  FSignInDto getSignInDto() {
-    return FSignInDto(email: _email, password: _password);
+  FSignInRequestDto getSignInDto() {
+    return FSignInRequestDto(email: _email, password: _password);
   }
 
-  FSignUpDto getSignUpDto() {
-    return FSignUpDto(name: _name, email: _email, password: _password);
+  FSignUpRequestDto getSignUpDto() {
+    return FSignUpRequestDto(name: _name, email: _email, password: _password);
   }
 }
