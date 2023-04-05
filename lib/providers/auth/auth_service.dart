@@ -1,8 +1,8 @@
 import 'package:shipcret/common/common_enum.dart';
 import 'package:shipcret/common/utils/util.dart' as utils;
 import 'package:shipcret/providers/auth/auth_repository.dart';
-import 'package:shipcret/providers/dtos/signin.dto.dart';
-import 'package:shipcret/providers/dtos/signup.dto.dart';
+import 'package:shipcret/providers/auth/signin.dto.dart';
+import 'package:shipcret/providers/auth/signup.dto.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -10,7 +10,7 @@ final authServiceProvider = Provider<FAuthService>((ref) {
   return FAuthService(ref);
 });
 
-final authWelcomeProvider = FutureProvider.autoDispose<utils.FOptional>((ref) async {
+final authWelcomeProvider = FutureProvider.autoDispose<utils.FResOptional>((ref) async {
   final welcomeType = ref.read(authServiceProvider).welcomeType;
 
   switch (welcomeType) {
@@ -21,7 +21,7 @@ final authWelcomeProvider = FutureProvider.autoDispose<utils.FOptional>((ref) as
       final signUpDto = ref.read(authServiceProvider).getSignUpDto();
       return await ref.read(authRepository).signUp(signUpDto);
     default:
-      return utils.FNullOpt();
+      return utils.FNullResOpt.unknownError();
   }
 });
 

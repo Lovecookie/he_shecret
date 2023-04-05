@@ -1,6 +1,6 @@
 import 'package:shipcret/providers/response_data.dart';
 
-class FSignUpDto extends FDtoBase {
+class FSignUpDto extends FRequestDtoBase {
   final String name;
   final String email;
   final String password;

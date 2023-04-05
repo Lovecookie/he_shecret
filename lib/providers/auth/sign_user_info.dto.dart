@@ -1,3 +1,4 @@
+
 import 'package:shipcret/providers/response_data.dart';
 
 class FSignUserInfoDto extends FResponseDtoBase {

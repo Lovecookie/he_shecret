@@ -2,7 +2,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shipcret/models/secret_feed_model.dart';
 import 'package:shipcret/models/user_feed_model.dart';
 import 'package:shipcret/providers/auth_state_notifier.dart';
-import 'package:shipcret/providers/users/user_repository.dart';
 import 'package:shipcret/widgets/common/widget_enum.dart';
 
 import 'dart:convert';
@@ -41,11 +40,6 @@ final feedFutureProvider = FutureProvider.autoDispose.family<List<FUserFeedModel
 /// feed view state provider
 ///
 final secretFeedFutureProvider = FutureProvider.autoDispose.family<List<FSecretFeedModel>, int>((ref, feedId) async {
-  await Future.delayed(const Duration(milliseconds: 200));
-
-  final userRepository = ref.watch(FUserRepository.provider);
-  final responseData = await userRepository.getUserInfo(BigInt.from(1));
-
   Iterable iter = FSecretFeedModel.generateRandomData();
 
   return List<FSecretFeedModel>.from(iter.map((model) => FSecretFeedModel.fromJson(model)));

@@ -38,12 +38,12 @@ class _FWelcomeUserPageState extends ConsumerState<FWelcomeUserPage> {
         return _body(context, state: EWelcomePageState.loading);
       },
       error: (err, stack) {
-        return _body(context, state: EWelcomePageState.error, text: "Error...");
+        return _body(context, state: EWelcomePageState.error, text: FCommonString.warning);
       },
       data: (optional) {
         if (!optional.hasValue) {
-          reservationNextPage(nextSeconds: 1);
-          return _body(context, state: EWelcomePageState.loading);
+          reservationNextPage();
+          return _body(context, state: EWelcomePageState.error, text: FCommonString.getUserError);
         }
 
         final userInfoDto = optional.value;
@@ -113,7 +113,7 @@ class _FWelcomeUserPageState extends ConsumerState<FWelcomeUserPage> {
           text,
           style: const TextStyle(
             color: FCommonColor.subPrimaryWhite,
-            fontSize: 30,
+            fontSize: 20,
             fontFamily: FCommonFont.family,
           ),
         );

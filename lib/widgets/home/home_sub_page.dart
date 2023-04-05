@@ -3,6 +3,7 @@ import 'package:shipcret/common/common_ui_overlay_style.dart';
 import 'package:shipcret/material-theme/common_color.dart';
 import 'package:shipcret/models/secret_feed_model.dart';
 import 'package:shipcret/providers/state_provider.dart';
+import 'package:shipcret/widgets/common/common_string.dart';
 import 'package:shipcret/widgets/home/feed_widget_view.dart';
 
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ class FHomeSubPage extends ConsumerWidget {
         return _body(context, isLoading: true);
       },
       error: (err, stack) {
-        return _body(context, notCompletedText: "Error...");
+        return _body(context, notCompletedText: FCommonString.getFeedError);
       },
       data: (secretFeeds) {
         return _body(context, secretFeeds: secretFeeds);
@@ -42,7 +43,7 @@ class FHomeSubPage extends ConsumerWidget {
             minHeight: constrains.maxHeight,
           ),
           child: secretFeeds != null
-              ? FFeedWidgetView(secretFeeds) // _feedListView(secretFeeds, context: context)
+              ? FFeedWidgetView(secretFeeds)
               : _emptyView(context: context, isLoading: isLoading, text: notCompletedText),
         );
       },

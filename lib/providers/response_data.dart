@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:shipcret/common/utils/util.dart';
 
 typedef FRequestJson = Map<String, dynamic>;
 typedef FResponseJson = Map<String, dynamic>;
@@ -7,23 +8,21 @@ typedef FResponseJsonList = List<FResponseJson>;
 ///
 /// FResponse dto type
 ///
-abstract class FDtoBase extends Equatable {
-  const FDtoBase();
+abstract class FRequestDtoBase extends Equatable {
+  const FRequestDtoBase();
 
   FRequestJson toJson();
 }
 
 abstract class FResponseDtoBase extends Equatable {
   const FResponseDtoBase();
-
-  fromJson(FResponseJson json);
 }
 
 ///
 /// FResponse data type
 ///
 class FResponseData extends Equatable {
-  final int statusCode;
+  final int resultCode;
   final bool? success;
   final String? timestamp;
   final List<String>? message;
@@ -31,7 +30,7 @@ class FResponseData extends Equatable {
   final FResponseJsonList? data;
 
   const FResponseData({
-    required this.statusCode,
+    required this.resultCode,
     required this.success,
     required this.message,
     this.timestamp,
@@ -41,7 +40,7 @@ class FResponseData extends Equatable {
 
   @override
   List<Object?> get props => [
-        statusCode,
+        resultCode,
         success,
         timestamp,
         message,
@@ -49,7 +48,7 @@ class FResponseData extends Equatable {
         data,
       ];
 
-  bool get isSuccess => statusCode == 200 || statusCode == 201;
+  bool get isSuccess => (resultCode == 200 || resultCode == 201 || resultCode == FResultCode.success);
 
   factory FResponseData.fromJson(Map<String, dynamic> json) {
     List<Map<String, dynamic>>? data;
@@ -71,7 +70,7 @@ class FResponseData extends Equatable {
     }
 
     return FResponseData(
-      statusCode: json['statusCode'] as int,
+      resultCode: json['statusCode'] as int,
       success: json['success'] as bool,
       message: message,
       timestamp: json['timestamp'] as String?,
@@ -82,10 +81,11 @@ class FResponseData extends Equatable {
 
   factory FResponseData.fromError(
     String message, {
+    int? resultCode,
     Map<String, dynamic>? json,
   }) {
     return FResponseData(
-      statusCode: json?['statusCode'] as int? ?? 500,
+      resultCode: resultCode ?? json?['statusCode'] as int? ?? FResultCode.unknownError,
       success: false,
       message: [message],
       timestamp: json?['timestamp'] as String?,
@@ -95,6 +95,6 @@ class FResponseData extends Equatable {
   }
 
   String getErrorString() {
-    return 'FResponseData{statusCode: $statusCode, success: $success, timestamp: $timestamp, message: $message, error: $error, data: $data}';
+    return 'FResponseData{resultCode: $resultCode, success: $success, timestamp: $timestamp, message: $message, error: $error, data: $data}';
   }
 }

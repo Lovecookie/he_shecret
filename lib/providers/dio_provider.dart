@@ -1,6 +1,7 @@
 import 'package:shipcret/common/route_wrapper.dart';
+import 'package:shipcret/common/utils/util.dart';
 import 'package:shipcret/providers/auth/auth_repository.dart';
-import 'package:shipcret/providers/dtos/token_dto.dart';
+import 'package:shipcret/providers/auth/token_dto.dart';
 import 'package:shipcret/providers/response_data.dart';
 
 import 'package:dio/dio.dart';
@@ -180,21 +181,21 @@ class DioErrorUtil {
   static FResponseData convertError(DioError dioError) {
     switch (dioError.type) {
       case DioErrorType.connectionTimeout:
-        return FResponseData.fromError('Connection timeout', json: dioError.response?.data);
+        return FResponseData.fromError('Connection timeout', resultCode: FResultCode.connectionTimeOut);
       case DioErrorType.sendTimeout:
-        return FResponseData.fromError('Send timeout', json: dioError.response?.data);
+        return FResponseData.fromError('Send timeout', resultCode: FResultCode.sendTimeOut);
       case DioErrorType.receiveTimeout:
-        return FResponseData.fromError('Receive timeout', json: dioError.response?.data);
+        return FResponseData.fromError('Receive timeout', resultCode: FResultCode.receiveTimeOut);
       case DioErrorType.badCertificate:
-        return FResponseData.fromError('Bad certificate', json: dioError.response?.data);
+        return FResponseData.fromError('Bad certificate', resultCode: FResultCode.badCertificate);
       case DioErrorType.badResponse:
         return FResponseData.fromJson(dioError.response?.data);
       case DioErrorType.cancel:
-        return FResponseData.fromError('Request cancelled', json: dioError.response?.data);
+        return FResponseData.fromError('Request cancelled', resultCode: FResultCode.cancel);
       case DioErrorType.connectionError:
-        return FResponseData.fromError('Connection error', json: dioError.response?.data);
+        return FResponseData.fromError('Connection error', resultCode: FResultCode.connectionError);
       case DioErrorType.unknown:
-        return FResponseData.fromError('unknown', json: dioError.response?.data);
+        return FResponseData.fromError('unknown', resultCode: FResultCode.unknownError);
     }
   }
 }

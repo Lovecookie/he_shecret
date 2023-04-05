@@ -27,12 +27,18 @@ class FCommonString {
 
   static const signInSignIn = "로그인";
 
+  static const error = "흑흑! 에러가 발생했어요!";
+  static const warning = "흑흑! 문제가 발생했어요!";
+  static const findUserError = "앗! 사용자를 찾을 수 없습니다!";
+  static const getUserError = "앗! 사용자 정보를 가져올 수 없습니다!";
+
   static const follower = "팔로워";
   static const secretCount = "비밀";
   static const uncoveredCount = "밝혀진 비밀";
 
   static const remainedTime = "남은 시간";
   static const search = "검색";
+  static const getFeedError = "피드를 가져오는데 실패했어요!";
   static const veryHotSecretFeedRightNow = "지금 굉장히 핫한 비밀 피드";
 
   static String randomWelcome(String name) {
