@@ -1,3 +1,5 @@
+import 'package:fixnum/fixnum.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shipcret/providers/entitys/feed.entity.dart';
 import 'package:shipcret/providers/feed/feed.requestDto.dart';
@@ -7,8 +9,8 @@ final myFeedServiceNotifier = StateNotifierProvider<FFeedServiceState, List<FFee
   return FFeedServiceState(ref, []);
 });
 
-final friendFeedServiceNotifier = StateNotifierProvider<FFeedServiceState, List<FFeedEntity>>((ref) {
-  return FFeedServiceState(ref, []);
+final friendsFeedsProvider = Provider<Map<Int64, List<FFeedEntity>>>((ref) {
+  return {};
 });
 
 class FFeedServiceState extends StateNotifier<List<FFeedEntity>> {
@@ -18,16 +20,26 @@ class FFeedServiceState extends StateNotifier<List<FFeedEntity>> {
 
   get feedEntitys => state;
 
-  void createFeed(FFeedEntity feedEntity) async {
-    final optional = await _ref.read(feedRepository).createFeed(FCreateFeedRequestDto.fromEntity(feedEntity));
+  Future<void> createFeed(FCreateFeedRequestDto requestDto) async {
+    final optional = await _ref.read(feedRepository).createFeed(requestDto);
     if (!optional.hasValue) {
       return;
     }
 
-    _createFeed(optional.value);
+    _applyFeed(optional.value);
   }
 
-  void _createFeed(FFeedEntity feedEntity) {
+  Future<void> getMyFeed(Int64 nextuuid) async {
+    final myFeedDto = FMyFeedRequestDto(nextFeeduuid: nextuuid);
+    final optional = await _ref.read(feedRepository).myFeed(myFeedDto);
+    if (!optional.hasValue) {
+      return;
+    }
+
+    state = optional.value;
+  }
+
+  void _applyFeed(FFeedEntity feedEntity) {
     state = [...state, feedEntity];
   }
 }

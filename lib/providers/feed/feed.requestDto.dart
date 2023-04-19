@@ -38,10 +38,10 @@ class FCreateFeedRequestDto extends FRequestDtoBase {
   }
 }
 
-class FSearchFeedDto extends FRequestDtoBase {
+class FSearchFeedRequestDto extends FRequestDtoBase {
   final Int64 nextFeeduuid;
 
-  const FSearchFeedDto({
+  const FSearchFeedRequestDto({
     required this.nextFeeduuid,
   });
 
@@ -56,8 +56,33 @@ class FSearchFeedDto extends FRequestDtoBase {
   }
 
   @override
-  factory FSearchFeedDto.fromEntity(FFeedEntity entity) {
-    return FSearchFeedDto(
+  factory FSearchFeedRequestDto.fromEntity(FFeedEntity entity) {
+    return FSearchFeedRequestDto(
+      nextFeeduuid: entity.feeduuid,
+    );
+  }
+}
+
+class FMyFeedRequestDto extends FRequestDtoBase {
+  final Int64 nextFeeduuid;
+
+  const FMyFeedRequestDto({
+    required this.nextFeeduuid,
+  });
+
+  @override
+  List<Object?> get props => [nextFeeduuid];
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      'nextFeedUuid': nextFeeduuid.toString(),
+    };
+  }
+
+  @override
+  factory FMyFeedRequestDto.fromEntity(FFeedEntity entity) {
+    return FMyFeedRequestDto(
       nextFeeduuid: entity.feeduuid,
     );
   }

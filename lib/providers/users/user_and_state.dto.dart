@@ -1,6 +1,6 @@
 import 'package:shipcret/providers/response_data.dart';
 
-class FUserAndStateDto extends FRequestDtoBase {
+class FUserAndStateDto extends FResponseDto {
   final String useruuid;
   final String name;
   final String state;

@@ -34,6 +34,16 @@ class _FPlaygroundPageState extends ConsumerState<FPlaygroundPage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: _getPage(appState.getSubPage()),
+      floatingActionButton: FloatingActionButton(
+          backgroundColor: FCommonColor.godic,
+          onPressed: () {},
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30),
+          ),
+          child: const Icon(
+            Icons.add,
+            color: FCommonColor.greyYellow,
+          )),
       bottomNavigationBar: FBottomMenuBar(),
     );
   }

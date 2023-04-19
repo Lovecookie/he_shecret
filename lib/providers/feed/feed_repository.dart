@@ -19,22 +19,38 @@ class FFeedRepository extends FRepositoryBase {
       return FNullResOpt(responseData.resultCode);
     }
 
-    // return FResOptional(FFeedDetailResponseDto.fromJson(responseData.data!.first));
     return FResponseDto.tryToDto<FFeedDetailResponseDto>(responseData.data!.first);
   }
 
-  FFutureResOptional getTodayHotFeeds(FSearchFeedDto searchFeedDto) async {
+  FFutureResOptional myFeed(FMyFeedRequestDto myFeedDto) async {
+    final responseData = await get('/my-feed', data: myFeedDto.toJson());
+    if (!responseData.isSuccess) {
+      return FNullResOpt(responseData.resultCode);
+    }
+
+    return FResponseDto.tryToDtoList<FFeedResponseDto>(responseData.data!);
+  }
+
+  FFutureResOptional todayHotFeeds(FSearchFeedRequestDto searchFeedDto) async {
     final responseData = await get('/today-hot', data: searchFeedDto.toJson());
     if (!responseData.isSuccess) {
       return FNullResOpt(responseData.resultCode);
     }
 
-    // return FResOptional(FFeedDetailResponseDto.fromJson(responseData.data!.first));
     return FResponseDto.tryToDtoList<FFeedResponseDto>(responseData.data!);
   }
 
-  FFutureResOptional getRandomFeeds() async {
+  FFutureResOptional randomFeeds() async {
     final responseData = await get('/random');
+    if (!responseData.isSuccess) {
+      return FNullResOpt(responseData.resultCode);
+    }
+
+    return FResponseDto.tryToDtoList<FFeedResponseDto>(responseData.data!);
+  }
+
+  FFutureResOptional friendsFeeds() async {
+    final responseData = await get('/friends');
     if (!responseData.isSuccess) {
       return FNullResOpt(responseData.resultCode);
     }
