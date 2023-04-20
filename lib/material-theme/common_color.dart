@@ -9,6 +9,7 @@ class FCommonColor {
   static const subPrimaryBlack = Color.fromARGB(255, 3, 3, 3);
   static const mattBlack = Color(0xFF121715);
   static const godic = Color(0xFF191c1b);
+  static const yellowGodic = Color.fromARGB(255, 67, 67, 55);
   static const greyYellow = Color(0xFFf5f5f5);
 
   static Color mattBlackOpacity(double opacity) => const Color(0xFF121715).withOpacity(opacity);

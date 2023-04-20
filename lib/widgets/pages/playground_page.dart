@@ -19,10 +19,40 @@ class FPlaygroundPage extends ConsumerStatefulWidget {
   ConsumerState<ConsumerStatefulWidget> createState() => _FPlaygroundPageState();
 }
 
-class _FPlaygroundPageState extends ConsumerState<FPlaygroundPage> {
+class _FPlaygroundPageState extends ConsumerState<FPlaygroundPage> with SingleTickerProviderStateMixin {
+  late AnimationController _animationController;
+  late Animation<double> _buttonAnimatedIcon;
+  late Animation<double> _translateButton;
+  bool _isExpanded = false;
+
   @override
   void initState() {
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 600),
+    );
+    // )..addListener(
+    //     () {
+    //       setState(() {});
+    //     },
+    //   );
+
+    _buttonAnimatedIcon = Tween<double>(begin: 0.0, end: 1.0).animate(_animationController);
+    _translateButton = Tween<double>(begin: 100, end: -20).animate(
+      CurvedAnimation(
+        parent: _animationController,
+        curve: Curves.easeInOut,
+      ),
+    );
+
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+
+    super.dispose();
   }
 
   @override
@@ -34,16 +64,17 @@ class _FPlaygroundPageState extends ConsumerState<FPlaygroundPage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: _getPage(appState.getSubPage()),
-      floatingActionButton: FloatingActionButton(
-          backgroundColor: FCommonColor.godic,
-          onPressed: () {},
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30),
-          ),
-          child: const Icon(
-            Icons.add,
-            color: FCommonColor.greyYellow,
-          )),
+      floatingActionButton: _animatedButton(),
+      // floatingActionButton: FloatingActionButton(
+      //     backgroundColor: FCommonColor.yellowGodic,
+      //     onPressed: () {},
+      //     shape: RoundedRectangleBorder(
+      //       borderRadius: BorderRadius.circular(30),
+      //     ),
+      //     child: const Icon(
+      //       Icons.add,
+      //       color: FCommonColor.greyYellow,
+      //     )),
       bottomNavigationBar: FBottomMenuBar(),
     );
   }
@@ -61,5 +92,77 @@ class _FPlaygroundPageState extends ConsumerState<FPlaygroundPage> {
       case ESubPage.message:
         return const FMessageSubPage();
     }
+  }
+
+  Widget _animatedButton() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        AnimatedBuilder(
+          animation: _animationController,
+          builder: (context, child) {
+            return Transform(
+              transform: Matrix4.translationValues(0.0, _translateButton.value * 4.0, 0.0),
+              child: child,
+            );
+          },
+          child: FloatingActionButton(
+            heroTag: 'emailTag',
+            backgroundColor: FCommonColor.yellowGodic,
+            onPressed: () {},
+            child: const Icon(Icons.email),
+          ),
+        ),
+        AnimatedBuilder(
+          animation: _animationController,
+          builder: (context, child) {
+            return Transform(
+              transform: Matrix4.translationValues(0.0, _translateButton.value * 3.0, 0.0),
+              child: child,
+            );
+          },
+          child: FloatingActionButton(
+            heroTag: 'callTag',
+            backgroundColor: FCommonColor.yellowGodic,
+            onPressed: () {},
+            child: const Icon(Icons.call),
+          ),
+        ),
+        AnimatedBuilder(
+          animation: _animationController,
+          builder: (context, child) {
+            return Transform(
+              transform: Matrix4.translationValues(0.0, _translateButton.value * 2.0, 0.0),
+              child: child,
+            );
+          },
+          child: FloatingActionButton(
+            heroTag: 'messageTag',
+            backgroundColor: FCommonColor.yellowGodic,
+            onPressed: () {},
+            child: const Icon(Icons.message),
+          ),
+        ),
+        FloatingActionButton(
+          heroTag: 'menuTag',
+          onPressed: _toggle,
+          backgroundColor: FCommonColor.yellowGodic,
+          child: AnimatedIcon(
+            icon: AnimatedIcons.menu_close,
+            progress: _buttonAnimatedIcon,
+          ),
+        ),
+      ],
+    );
+  }
+
+  _toggle() {
+    if (_isExpanded) {
+      _animationController.reverse();
+    } else {
+      _animationController.forward();
+    }
+
+    _isExpanded = !_isExpanded;
   }
 }
