@@ -1,4 +1,3 @@
-
 import 'package:fixnum/fixnum.dart';
 
 import 'package:equatable/equatable.dart';
@@ -12,6 +11,7 @@ class FUserEntity extends Equatable {
   late DateTime lastActivateTime;
   int myFriendCount;
   int myBestFriendCount;
+  String profilePicUrl;
   // List<Int64>? myFriends;
   // List<Int64>? myBestFriends;
   // String? email;
@@ -28,11 +28,11 @@ class FUserEntity extends Equatable {
     DateTime? activateTime,
     this.myFriendCount = 0,
     this.myBestFriendCount = 0,
+    this.profilePicUrl = '',
     // this.myFriends,
     // this.myBestFriends,
     // this.email,
     // this.displayName,
-    // this.profilePic,
     // this.bannerImage,
     // this.contact,
     // this.location,
@@ -46,6 +46,7 @@ class FUserEntity extends Equatable {
         lastActivateTime,
         myFriendCount,
         myBestFriendCount,
+        profilePicUrl,
         // myFriends,
         // myBestFriends,
         // email,
@@ -64,6 +65,7 @@ class FUserEntity extends Equatable {
       activateTime: userAndStateDto.lastActivateTime,
       myFriendCount: userAndStateDto.myFriendCount,
       myBestFriendCount: userAndStateDto.myBestFriendCount,
+      profilePicUrl: userAndStateDto.profilePicUrl,
       // myFriends: userAndStateDto.myFriendCount,
       // myBestFriends: userAndStateDto.myBestFriends,
       // email: userAndStateDto.email,

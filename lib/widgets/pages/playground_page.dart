@@ -1,6 +1,5 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:shipcret/common/common_ui_overlay_style.dart';
+import 'package:shipcret/common/route_wrapper.dart';
 import 'package:shipcret/material-theme/common_color.dart';
 import 'package:shipcret/providers/state_provider.dart';
 import 'package:shipcret/widgets/bottom_menu/bottom_menu_bar.dart';
@@ -11,6 +10,8 @@ import 'package:shipcret/widgets/notification/notification_sub_page.dart';
 import 'package:shipcret/widgets/search/search_sub_page.dart';
 import 'package:shipcret/widgets/message/message_sub_page.dart';
 
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:flutter/material.dart';
 
 class FPlaygroundPage extends ConsumerStatefulWidget {
@@ -87,65 +88,44 @@ class _FPlaygroundPageState extends ConsumerState<FPlaygroundPage> with SingleTi
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        AnimatedBuilder(
-          animation: _animationController,
-          builder: (context, child) {
-            return Transform.translate(
-                offset: _translateButton.value * 3.0,
-                child: AnimatedOpacity(
-                  opacity: _isExpanded ? 1.0 : 0.0,
-                  duration: Duration(milliseconds: fadeMilliseconds),
-                  child: child,
-                ));
-          },
-          child: FloatingActionButton(
-            heroTag: 'userTag',
-            onPressed: () {},
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
-            backgroundColor: FCommonColor.yellowGodic,
-            child: const Icon(FontAwesome5.user_alt),
-          ),
-        ),
-        AnimatedBuilder(
-          animation: _animationController,
-          builder: (context, child) {
-            return Transform.translate(
-              offset: _translateButton.value * 2.0,
-              child: AnimatedOpacity(
-                opacity: _isExpanded ? 1.0 : 0.0,
-                duration: Duration(milliseconds: fadeMilliseconds),
-                child: child,
+        _floatingAnimatedBuilder(
+            3.0,
+            FloatingActionButton(
+              heroTag: 'userTag',
+              onPressed: () {
+                FAppRoute.push(context, FRouteName.profile);
+              },
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
+              backgroundColor: FCommonColor.yellowGodic,
+              child: const Icon(
+                FontAwesome5.user_alt,
+                color: FCommonColor.subPrimaryWhite,
               ),
-            );
-          },
-          child: FloatingActionButton(
-            heroTag: 'sendToUserTag',
-            onPressed: () {},
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
-            backgroundColor: FCommonColor.yellowGodic,
-            child: const Icon(FontAwesome5.paper_plane),
-          ),
-        ),
-        AnimatedBuilder(
-          animation: _animationController,
-          builder: (context, child) {
-            return Transform.translate(
-              offset: _translateButton.value * 1.0,
-              child: AnimatedOpacity(
-                opacity: _isExpanded ? 1.0 : 0.0,
-                duration: Duration(milliseconds: fadeMilliseconds),
-                child: child,
+            )),
+        _floatingAnimatedBuilder(
+            2.0,
+            FloatingActionButton(
+              heroTag: 'sendToUserTag',
+              onPressed: () {},
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
+              backgroundColor: FCommonColor.yellowGodic,
+              child: const Icon(
+                FontAwesome5.paper_plane,
+                color: FCommonColor.subPrimaryWhite,
               ),
-            );
-          },
-          child: FloatingActionButton(
-            heroTag: 'historyTag',
-            onPressed: () {},
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
-            backgroundColor: FCommonColor.yellowGodic,
-            child: const Icon(FontAwesome5.history),
-          ),
-        ),
+            )),
+        _floatingAnimatedBuilder(
+            1.0,
+            FloatingActionButton(
+              heroTag: 'historyTag',
+              onPressed: () {},
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
+              backgroundColor: FCommonColor.yellowGodic,
+              child: const Icon(
+                FontAwesome5.history,
+                color: FCommonColor.subPrimaryWhite,
+              ),
+            )),
         FloatingActionButton(
           heroTag: 'menuTag',
           onPressed: _toggle,
@@ -154,9 +134,27 @@ class _FPlaygroundPageState extends ConsumerState<FPlaygroundPage> with SingleTi
           child: AnimatedIcon(
             icon: AnimatedIcons.menu_close,
             progress: _buttonAnimatedIcon,
+            color: FCommonColor.subPrimaryWhite,
           ),
         ),
       ],
+    );
+  }
+
+  AnimatedBuilder _floatingAnimatedBuilder(double value, FloatingActionButton button) {
+    return AnimatedBuilder(
+      animation: _animationController,
+      builder: (context, child) {
+        return Transform.translate(
+          offset: _translateButton.value * value,
+          child: AnimatedOpacity(
+            opacity: _isExpanded ? 1.0 : 0.0,
+            duration: Duration(milliseconds: fadeMilliseconds),
+            child: child,
+          ),
+        );
+      },
+      child: button,
     );
   }
 

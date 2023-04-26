@@ -2,7 +2,6 @@ import 'package:shipcret/common/common_assets.dart';
 import 'package:shipcret/common/common_font.dart';
 import 'package:shipcret/common/widgets/background_image_widget.dart';
 import 'package:shipcret/material-theme/common_color.dart';
-import 'package:shipcret/models/secret_feed_model.dart';
 import 'package:shipcret/models/shipcret_profile_model.dart';
 import 'package:shipcret/widgets/common/common_string.dart';
 import 'package:shipcret/widgets/common/shipcret_profile_card_widget.dart';
@@ -10,10 +9,9 @@ import 'package:shipcret/widgets/common/shipcret_profile_card_widget.dart';
 import 'package:flutter/material.dart';
 
 class FSecretProfileWidget extends StatefulWidget {
-  final FSecretFeedModel secretFeedModel;
   final double height;
 
-  const FSecretProfileWidget({super.key, required this.secretFeedModel, this.height = 200.0});
+  const FSecretProfileWidget({super.key, this.height = 200.0});
 
   @override
   State<FSecretProfileWidget> createState() => _FSecretProfileWidgetState();
@@ -28,7 +26,8 @@ class _FSecretProfileWidgetState extends State<FSecretProfileWidget> {
   Widget _body(BuildContext context) {
     var generateJson = FSecretProfileModel.generateRandomData();
 
-    return Container(
+    return Scaffold(
+        body: Container(
       height: double.infinity,
       decoration: const BoxDecoration(color: FCommonColor.godic),
       child: Column(
@@ -64,7 +63,7 @@ class _FSecretProfileWidgetState extends State<FSecretProfileWidget> {
           )
         ],
       ),
-    );
+    ));
   }
 
   Row _thumbnailBoxRow() {
@@ -106,7 +105,7 @@ class _FSecretProfileWidgetState extends State<FSecretProfileWidget> {
             style: const TextStyle(
               color: FCommonColor.subPrimaryWhite,
               fontFamily: FCommonFont.family,
-              fontSize: 10.0,
+              fontSize: 15.0,
             )),
       ],
     );
