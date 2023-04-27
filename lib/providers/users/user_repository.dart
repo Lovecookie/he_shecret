@@ -31,4 +31,13 @@ class FUserRepository extends FRepositoryBase {
 
     return FResponseDto.tryToDto<FUserAndStateDto>(responseData.data!.first);
   }
+
+  FFutureResOptional myProfile() async {
+    final responseData = await get('/my-profile');
+    if (!responseData.isSuccess) {
+      return FNullResOpt(responseData.resultCode);
+    }
+
+    return FResponseDto.tryToDto<FUserAndStateDto>(responseData.data!.first);
+  }
 }
