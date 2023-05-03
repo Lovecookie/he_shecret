@@ -102,3 +102,39 @@ class FFeedDetailResponseDto extends FResponseDto {
     );
   }
 }
+
+class FFeedSummaryResponseDto extends FResponseDto {
+  final Int64 feeduuid;
+  final String contentUrl;
+  final Int64 useruuid;
+
+  const FFeedSummaryResponseDto({
+    required this.feeduuid,
+    required this.contentUrl,
+    required this.useruuid,
+  });
+
+  @override
+  List<Object?> get props => [
+        feeduuid,
+        contentUrl,
+        useruuid,
+      ];
+
+  @override
+  FResponseJson toJson() {
+    return {
+      'feeduuid': feeduuid,
+      'contentUrl': contentUrl,
+      'useruuid': useruuid,
+    };
+  }
+
+  static FFeedSummaryResponseDto fromJson(Map<String, dynamic> json) {
+    return FFeedSummaryResponseDto(
+      feeduuid: Int64.parseInt(json['feeduuid']),
+      contentUrl: json['contentUrl'],
+      useruuid: Int64.parseInt(json['useruuid']),
+    );
+  }
+}

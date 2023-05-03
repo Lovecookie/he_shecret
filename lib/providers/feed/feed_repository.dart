@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shipcret/common/utils/util.dart';
 import 'package:shipcret/providers/dio_provider.dart';
-import 'package:shipcret/providers/feed/feed.requestDto.dart';
-import 'package:shipcret/providers/feed/feed.responseDto.dart';
+import 'package:shipcret/providers/feed/feed_request_dto.dart';
+import 'package:shipcret/providers/feed/feed_response_dto.dart';
 import 'package:shipcret/providers/repository_base.dart';
 import 'package:shipcret/providers/response_data.dart';
 
@@ -31,7 +31,7 @@ class FFeedRepository extends FRepositoryBase {
     return FResponseDto.tryToDtoList<FFeedResponseDto>(responseData.data!);
   }
 
-  FFutureResOptional todayHotFeeds(FSearchFeedRequestDto searchFeedDto) async {
+  FFutureResOptional todayHotFeeds(FRequestFeedDto searchFeedDto) async {
     final responseData = await get('/today-hot', data: searchFeedDto.toJson());
     if (!responseData.isSuccess) {
       return FNullResOpt(responseData.resultCode);
@@ -56,5 +56,14 @@ class FFeedRepository extends FRepositoryBase {
     }
 
     return FResponseDto.tryToDtoList<FFeedResponseDto>(responseData.data!);
+  }
+
+  FFutureResOptional feedSummary(FRequestFeedDto searchFeedDto) async {
+    final responseData = await get('/feed-summary', data: searchFeedDto.toJson());
+    if (!responseData.isSuccess) {
+      return FNullResOpt(responseData.resultCode);
+    }
+
+    return FResponseDto.tryToDtoList<FFeedSummaryResponseDto>(responseData.data!);
   }
 }
