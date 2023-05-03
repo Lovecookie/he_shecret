@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:fixnum/fixnum.dart';
-import 'package:shipcret/providers/feed/feed.responseDto.dart';
+import 'package:shipcret/providers/feed/feed_response_dto.dart';
 
 class FFeedEntity extends Equatable {
   final Int64 feeduuid;

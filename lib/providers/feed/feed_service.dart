@@ -2,7 +2,7 @@ import 'package:fixnum/fixnum.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shipcret/providers/entitys/feed.entity.dart';
-import 'package:shipcret/providers/feed/feed.requestDto.dart';
+import 'package:shipcret/providers/feed/feed_request_dto.dart';
 import 'package:shipcret/providers/feed/feed_repository.dart';
 
 final myFeedServiceNotifier = StateNotifierProvider<FFeedServiceState, List<FFeedEntity>>((ref) {
