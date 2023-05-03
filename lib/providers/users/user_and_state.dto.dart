@@ -7,7 +7,7 @@ class FUserAndStateDto extends FResponseDto {
   final DateTime lastActivateTime;
   final int myFriendCount;
   final int myBestFriendCount;
-  final String profilePicUrl;
+  final String profilePictureUrl;
 
   const FUserAndStateDto({
     required this.useruuid,
@@ -16,7 +16,7 @@ class FUserAndStateDto extends FResponseDto {
     required this.lastActivateTime,
     required this.myFriendCount,
     required this.myBestFriendCount,
-    required this.profilePicUrl,
+    required this.profilePictureUrl,
   });
 
   factory FUserAndStateDto.fromJson(Map<String, dynamic> json) {
@@ -27,12 +27,13 @@ class FUserAndStateDto extends FResponseDto {
       lastActivateTime: DateTime.parse(json['lastActivateTime']),
       myFriendCount: json['myFriendCount'],
       myBestFriendCount: json['myBestFriendCount'],
-      profilePicUrl: json['profilePicUrl'],
+      profilePictureUrl: json['profilePictureUrl'],
     );
   }
 
   @override
-  List<Object?> get props => [useruuid, name, state, lastActivateTime, myFriendCount, myBestFriendCount, profilePicUrl];
+  List<Object?> get props =>
+      [useruuid, name, state, lastActivateTime, myFriendCount, myBestFriendCount, profilePictureUrl];
 
   @override
   FRequestJson toJson() {
@@ -43,7 +44,7 @@ class FUserAndStateDto extends FResponseDto {
       'lastActivateTime': lastActivateTime.toIso8601String(),
       'myFriendCount': myFriendCount,
       'myBestFriendCount': myBestFriendCount,
-      'profilePicUrl': profilePicUrl,
+      'profilePictureUrl': profilePictureUrl,
     };
   }
 }

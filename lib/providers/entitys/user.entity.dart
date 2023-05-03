@@ -65,7 +65,7 @@ class FUserEntity extends Equatable {
       activateTime: userAndStateDto.lastActivateTime,
       myFriendCount: userAndStateDto.myFriendCount,
       myBestFriendCount: userAndStateDto.myBestFriendCount,
-      profilePicUrl: userAndStateDto.profilePicUrl,
+      profilePicUrl: userAndStateDto.profilePictureUrl,
       // myFriends: userAndStateDto.myFriendCount,
       // myBestFriends: userAndStateDto.myBestFriends,
       // email: userAndStateDto.email,
