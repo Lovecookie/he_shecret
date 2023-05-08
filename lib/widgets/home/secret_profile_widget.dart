@@ -27,43 +27,55 @@ class _FSecretProfileWidgetState extends State<FSecretProfileWidget> {
     var generateJson = FSecretProfileModel.generateRandomData();
 
     return Scaffold(
-        body: Container(
-      height: double.infinity,
-      decoration: const BoxDecoration(color: FCommonColor.godic),
-      child: Column(
-        children: <Widget>[
-          FSecretProfileCardWidget(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height / 4,
-              imageUrl: FCommonAssets.randomImageAssets(),
-              profileModel: FSecretProfileModel.fromJson(generateJson[0])),
-          Container(
-            margin: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
-            padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 50.0),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(25.0),
-              color: FCommonColor.mattBlack,
-            ),
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  _infoText("250K", FCommonString.follower),
-                  _infoText("1000", FCommonString.secretCount),
-                  _infoText("100", FCommonString.uncoveredCount),
-                ]),
+        appBar: AppBar(
+          centerTitle: true,
+          backgroundColor: Colors.transparent,
+          elevation: 0.0,
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back_ios, color: FCommonColor.mattBlack),
+            onPressed: () {
+              Navigator.pop(context);
+            },
           ),
-          Flexible(
-            child: ListView.builder(
-              itemCount: 15,
-              itemBuilder: (context, index) {
-                return _thumbnailBoxRow();
-              },
-            ),
-          )
-        ],
-      ),
-    ));
+        ),
+        extendBodyBehindAppBar: true,
+        body: Container(
+          height: double.infinity,
+          decoration: const BoxDecoration(color: FCommonColor.godic),
+          child: Column(
+            children: <Widget>[
+              FSecretProfileCardWidget(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height / 4,
+                  imageUrl: FCommonAssets.randomImageAssets(),
+                  profileModel: FSecretProfileModel.fromJson(generateJson[0])),
+              Container(
+                margin: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+                padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 50.0),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(25.0),
+                  color: FCommonColor.mattBlack,
+                ),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      _infoText("250K", FCommonString.follower),
+                      _infoText("1000", FCommonString.secretCount),
+                      _infoText("100", FCommonString.uncoveredCount),
+                    ]),
+              ),
+              Flexible(
+                child: ListView.builder(
+                  itemCount: 15,
+                  itemBuilder: (context, index) {
+                    return _thumbnailBoxRow();
+                  },
+                ),
+              )
+            ],
+          ),
+        ));
   }
 
   Row _thumbnailBoxRow() {

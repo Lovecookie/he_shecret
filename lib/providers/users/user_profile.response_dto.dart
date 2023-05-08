@@ -1,8 +1,9 @@
+
 import 'package:shipcret/providers/response_data.dart';
 
 import 'package:fixnum/fixnum.dart';
 
-class FUserProfileDto extends FResponseDto {
+class FUserProfileResponseDto extends FResponseDto {
   final String useruuid;
   final String userName;
   final String userState;
@@ -11,7 +12,7 @@ class FUserProfileDto extends FResponseDto {
   final Int64 secretCount;
   final Int64 showingSecretCount;
 
-  const FUserProfileDto({
+  const FUserProfileResponseDto({
     required this.useruuid,
     required this.userName,
     required this.userState,
@@ -46,7 +47,7 @@ class FUserProfileDto extends FResponseDto {
   }
 
   static FResponseDto fromJson(FResponseJson json) {
-    return FUserProfileDto(
+    return FUserProfileResponseDto(
       useruuid: json['useruuid'],
       userName: json['userName'],
       userState: json['userState'],

@@ -6,7 +6,7 @@ import 'package:shipcret/providers/repository_base.dart';
 import 'package:shipcret/providers/dio_provider.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:shipcret/providers/users/user_profile.dto.dart';
+import 'package:shipcret/providers/users/user_profile.response_dto.dart';
 
 final userRepository = Provider<FUserRepository>((ref) {
   return FUserRepository(ref);
@@ -39,6 +39,6 @@ class FUserRepository extends FRepositoryBase {
       return FNullResOpt(responseData.resultCode);
     }
 
-    return FResponseDto.tryToDto<FUserProfileDto>(responseData.data!.first);
+    return FResponseDto.tryToDto<FUserProfileResponseDto>(responseData.data!.first);
   }
 }

@@ -58,8 +58,8 @@ class FFeedRepository extends FRepositoryBase {
     return FResponseDto.tryToDtoList<FFeedResponseDto>(responseData.data!);
   }
 
-  FFutureResOptional feedSummary(FRequestFeedDto searchFeedDto) async {
-    final responseData = await get('/feed-summary', data: searchFeedDto.toJson());
+  FFutureResOptional feedSummary(FRequestFeedDto requestFeedDto) async {
+    final responseData = await get('/feed-summary', data: requestFeedDto.toJson());
     if (!responseData.isSuccess) {
       return FNullResOpt(responseData.resultCode);
     }

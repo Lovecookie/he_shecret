@@ -29,4 +29,12 @@ class FFeedSummaryEntity extends FEntityBase {
       'summaryPictureUrl': summaryPictureUrl,
     };
   }
+
+  factory FFeedSummaryEntity.fromJson(FRequestJson json) {
+    return FFeedSummaryEntity(
+      useruuid: Int64.parseInt(json['useruuid']),
+      feeduuid: Int64.parseInt(json['feeduuid']),
+      summaryPictureUrl: json['summaryPictureUrl'],
+    );
+  }
 }
