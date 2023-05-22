@@ -32,7 +32,10 @@ class _ShipcrettProfilWidgeteState extends State<FSecretProfileCardWidget> {
       image: AssetImage(widget.imageUrl),
       width: widget.width,
       height: widget.height,
-      borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(35.0), bottomRight: Radius.circular(35.0)),
+      borderRadius: const BorderRadius.only(
+        bottomLeft: Radius.circular(35.0),
+        bottomRight: Radius.circular(35.0),
+      ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -40,21 +43,14 @@ class _ShipcrettProfilWidgeteState extends State<FSecretProfileCardWidget> {
           _profileImage(),
           Text(
             widget.profileModel.nickName,
-            style: const TextStyle(
-              color: FCommonColor.subPrimaryWhite,
+            style: TextStyle(
+              color: FCommonColor.godicOpacity(0.8),
               fontFamily: FCommonFont.family,
               fontSize: 18.0,
               height: 2.0,
             ),
           ),
           const SizedBox(height: 20),
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.end,
-          //   children: <Widget>[
-          //     _commentsIconButton(),
-          //     _heartIconButton(),
-          //   ],
-          // )
         ],
       ),
     );
