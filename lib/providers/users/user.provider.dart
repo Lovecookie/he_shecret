@@ -50,9 +50,11 @@ final myUserServiceProvider = StateNotifierProvider<FUserServiceState, FUserEnti
   return FUserServiceState();
 });
 
-final myUserFutureProvider = FutureProvider.autoDispose<FOptional<FMyUserInfo>>((ref) async {
-  if (!ref.read(myUserInfoProvider).isEmpty) {
-    return FNullOpt();
+final myUserFutureProvider = FutureProvider.autoDispose.family<FOptional<FMyUserInfo>, bool>((ref, isRefresh) async {
+  if (!isRefresh) {
+    if (!ref.read(myUserInfoProvider).isEmpty) {
+      return FOptional(ref.read(myUserInfoProvider));
+    }
   }
 
   final optional = await ref.read(userRepository).myInfo();

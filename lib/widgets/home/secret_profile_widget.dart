@@ -3,29 +3,47 @@ import 'package:shipcret/common/common_font.dart';
 import 'package:shipcret/common/widgets/background_image_widget.dart';
 import 'package:shipcret/material-theme/common_color.dart';
 import 'package:shipcret/models/shipcret_profile_model.dart';
+import 'package:shipcret/providers/users/user.provider.dart';
 import 'package:shipcret/widgets/common/common_string.dart';
 import 'package:shipcret/widgets/common/shipcret_profile_card_widget.dart';
 
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 
-class FSecretProfileWidget extends StatefulWidget {
+class FSecretProfileWidget extends ConsumerStatefulWidget {
   final double height;
 
   const FSecretProfileWidget({super.key, this.height = 200.0});
 
   @override
-  State<FSecretProfileWidget> createState() => _FSecretProfileWidgetState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _FSecretProfileWidgetState();
 }
 
-class _FSecretProfileWidgetState extends State<FSecretProfileWidget> {
+class _FSecretProfileWidgetState extends ConsumerState<FSecretProfileWidget> {
   @override
   Widget build(BuildContext context) {
-    return _body(context);
+    // var generateJson = FSecretProfileModel.generateRandomData();
+    return ref.watch(myUserFutureProvider(false)).when(
+      loading: () {
+        return _body();
+      },
+      error: (err, stack) {
+        return _body();
+      },
+      data: (optional) {
+        if (!optional.hasValue) {
+          return _body();
+        }
+
+        final FMyUserInfo myUserInfo = optional.value;
+        ref.read(myUserInfoProvider).setUserInfo(myUserInfo.userEntity, myUserInfo.userProfileEntity);
+
+        return _body();
+      },
+    );
   }
 
-  Widget _body(BuildContext context) {
-    var generateJson = FSecretProfileModel.generateRandomData();
-
+  Widget _body() {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
