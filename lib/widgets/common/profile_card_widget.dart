@@ -1,26 +1,34 @@
+import 'package:shipcret/common/common_assets.dart';
 import 'package:shipcret/common/common_font.dart';
 import 'package:shipcret/common/widgets/background_image_widget.dart';
 import 'package:shipcret/material-theme/common_color.dart';
-import 'package:shipcret/models/shipcret_profile_model.dart';
+import 'package:shipcret/providers/entitys/user_profile.entity.dart';
 import 'package:shipcret/widgets/common/icon_button.dart';
 
 import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:flutter/material.dart';
 
-class FSecretProfileCardWidget extends StatefulWidget {
-  final FSecretProfileModel profileModel;
-  final String imageUrl;
+class FProfileCardWidget extends StatefulWidget {
+  final FUserProfileEntity profileEntity;
   final double width;
   final double height;
 
-  const FSecretProfileCardWidget(
-      {super.key, required this.imageUrl, required this.profileModel, required this.width, required this.height});
+  const FProfileCardWidget({
+    super.key,
+    required this.profileEntity,
+    required this.width,
+    required this.height,
+  });
+
+  get getProfileEntity => profileEntity;
+  get getWidth => width;
+  get getHeight => height;
 
   @override
-  State<FSecretProfileCardWidget> createState() => _ShipcrettProfilWidgeteState();
+  State<FProfileCardWidget> createState() => _ProfileWidgeteState();
 }
 
-class _ShipcrettProfilWidgeteState extends State<FSecretProfileCardWidget> {
+class _ProfileWidgeteState extends State<FProfileCardWidget> {
   @override
   void initState() {
     super.initState();
@@ -29,7 +37,8 @@ class _ShipcrettProfilWidgeteState extends State<FSecretProfileCardWidget> {
   @override
   Widget build(BuildContext context) {
     return FBackgroundStackBlurWidget(
-      image: AssetImage(widget.imageUrl),
+      //AssetImage(widget.getProfileEntity.profileUrl),
+      image: AssetImage(FCommonAssets.randomImageAssets()),
       width: widget.width,
       height: widget.height,
       borderRadius: const BorderRadius.only(
@@ -42,7 +51,8 @@ class _ShipcrettProfilWidgeteState extends State<FSecretProfileCardWidget> {
         children: [
           _profileImage(),
           Text(
-            widget.profileModel.nickName,
+            //widget.profileModel.nickName,
+            widget.getProfileEntity.userName,
             style: TextStyle(
               color: FCommonColor.godicOpacity(0.8),
               fontFamily: FCommonFont.family,
@@ -63,7 +73,7 @@ class _ShipcrettProfilWidgeteState extends State<FSecretProfileCardWidget> {
       decoration: BoxDecoration(
         color: Colors.black,
         shape: BoxShape.circle,
-        image: DecorationImage(image: AssetImage(widget.imageUrl), fit: BoxFit.cover),
+        image: DecorationImage(image: AssetImage(FCommonAssets.randomImageAssets()), fit: BoxFit.cover),
       ),
     );
   }

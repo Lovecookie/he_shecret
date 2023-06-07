@@ -6,7 +6,8 @@ import 'package:fixnum/fixnum.dart';
 class FUserProfileEntity extends FEntityBase {
   final Int64 useruuid;
   final String userName;
-  final String userState;
+  final String profileUrl;
+  late String userState;
   late Int64 followerCount;
   late Int64 feedCount;
   late Int64 secretCount;
@@ -15,6 +16,7 @@ class FUserProfileEntity extends FEntityBase {
   FUserProfileEntity({
     this.useruuid = Int64.ZERO,
     this.userName = '',
+    this.profileUrl = '',
     this.userState = '',
     this.followerCount = Int64.ZERO,
     this.feedCount = Int64.ZERO,
@@ -26,6 +28,7 @@ class FUserProfileEntity extends FEntityBase {
   List<Object?> get props => [
         useruuid,
         userName,
+        profileUrl,
         userState,
         followerCount,
         feedCount,
@@ -38,6 +41,7 @@ class FUserProfileEntity extends FEntityBase {
     return {
       'useruuid': useruuid.toString(),
       'userName': userName,
+      'profileUrl': profileUrl,
       'userState': userState,
       'followerCount': followerCount.toString(),
       'feedCount': feedCount.toString(),
@@ -50,11 +54,16 @@ class FUserProfileEntity extends FEntityBase {
     return FUserProfileEntity(
       useruuid: Int64.parseInt(json['useruuid']),
       userName: json['userName'],
+      profileUrl: json['profileUrl'],
       userState: json['userState'],
       followerCount: Int64.parseInt(json['followerCount']),
       feedCount: Int64.parseInt(json['feedCount']),
       secretCount: Int64.parseInt(json['secretCount']),
       showingSecretCount: Int64.parseInt(json['showingSecretCount']),
     );
+  }
+
+  factory FUserProfileEntity.empty() {
+    return FUserProfileEntity();
   }
 }
