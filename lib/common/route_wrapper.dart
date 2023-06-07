@@ -1,4 +1,4 @@
-import 'package:shipcret/widgets/home/secret_profile_widget.dart';
+import 'package:shipcret/widgets/home/profile_widget.dart';
 import 'package:shipcret/widgets/pages/playground_page.dart';
 import 'package:shipcret/widgets/pages/sign_in_page.dart';
 import 'package:shipcret/widgets/pages/sign_up_page.dart';
@@ -81,7 +81,7 @@ class FRouteWrapper {
         pageBuilder: (context, state) => _slidePageBuilder(
           context,
           state,
-          const FSecretProfileWidget(),
+          const FProfilePage(),
         ),
       ),
     ],
